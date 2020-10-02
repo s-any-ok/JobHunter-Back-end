@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace WebAPI.Models
+namespace JobUa.Data.Models
 {
     public class Company : User
     {

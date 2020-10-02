@@ -6,7 +6,7 @@ using System.Web.Http;
 using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
-using WebAPI.Models;
+using JobUa.Data.Models;
 
 namespace WebAPI.Controllers
 {

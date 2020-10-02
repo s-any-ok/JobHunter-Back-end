@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
 
-namespace WebAPI.Models
+namespace JobUa.Data.Models
 {
     public class User
     {

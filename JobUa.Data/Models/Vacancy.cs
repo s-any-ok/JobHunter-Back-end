@@ -2,7 +2,7 @@
 using System.Device.Location;
 
 
-namespace WebAPI.Models
+namespace JobUa.Data.Models
 {
     public class Vacancy
     {
