@@ -32,15 +32,23 @@ namespace WebAPI.Controllers
             try
             {
                 DataTable table = new DataTable();
-                string query = @"insert into dbo.Vacancies (VacancyName,
+                string query = @"insert into dbo.Vacancies (CompanyID,
+                                                            VacancyName,
                                                             Information,
                                                             ContactNumber,
-                                                            Salary) 
+                                                            Latitude,
+                                                            Longitude,
+                                                            Salary,
+                                                            RegistrationData) 
                                                             Values 
-                                                            ('" + vac.VacancyName + @"',
+                                                            ('" + vac.CompanyID + @"',
+                                                             '" + vac.VacancyName + @"',
                                                              '" + vac.Information + @"',
                                                              '" + vac.ContactNumber + @"',
-                                                             '" + vac.Salary + @"')";
+                                                             '" + vac.Latitude + @"'
+                                                             '" + vac.Longitude + @"',
+                                                             '" + vac.Salary + @"'
+                                                             '" + vac.RegistrationData + @"')";
 
                 using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["JobSearchAppDB"].ConnectionString))
                 using (SqlCommand cmd = new SqlCommand(query, con))
@@ -64,7 +72,6 @@ namespace WebAPI.Controllers
                 DataTable table = new DataTable();
                 string query = @"update dbo.Vacancies set  
                                                             VacancyName = '" + vac.VacancyName + @"',
-                                                            Company = '" + vac.CompanyID + @"',
                                                             Information = '" + vac.Information + @"',
                                                             ContactNumber =  '" + vac.ContactNumber + @"',
                                                             Salary = '" + vac.Salary + @"'

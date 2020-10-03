@@ -12,7 +12,7 @@ namespace JobUa.Data.Models
         public bool IsVip { get; set; }
         public List<string> Partners { get; set; }
         public List<string> Vacancies { get; set; }
-        public DateTime RegistrationData { get; set; }
+        
 
         public int TimeAfterRegistration()
         {

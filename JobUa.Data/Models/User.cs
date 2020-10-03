@@ -9,11 +9,14 @@ namespace JobUa.Data.Models
     {
         public Guid UserID { get; private set; }
         public string UserName { get; set; }
-        public string Login { get; set; }
-        public string Password { get; set; }
+        public string UserLogin { get; set; }
+        public string UserPassword { get; set; }
         public string SecretWord { get; set; }
         public string Mail { get; set; }
         public string ContactNumber { get; set; }
+        public bool isCompany { get; set; }
+        public Guid ChildID { get; set; }
+        public DateTime RegistrationData { get; set; }
 
         public bool IsValPassword(string inputPassword) {
             int minLen = 8;
@@ -45,7 +48,7 @@ namespace JobUa.Data.Models
         }
         public bool IsCorrectPassword(string InputPassword)
         {
-            if (InputPassword == Password) {
+            if (InputPassword == UserPassword) {
                 return true;
             }
             return false;
