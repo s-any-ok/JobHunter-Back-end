@@ -7,8 +7,9 @@ namespace JobUa.Data.Models
     public class Employee : User
     {
         public Guid EmployeeID { get; private set; }
-        public string Name { get; set; }
+        public string FirstName { get; set; }
         public string Surname { get; set; }
+        public string Patronymic { get; set; }
         public string Education { get; set; }
         public Gender Gender { get; set; }
         public DateTime Birthday { get; set; }
@@ -18,7 +19,7 @@ namespace JobUa.Data.Models
 
         public override string ToString()
         {
-            return Name + " " + Surname;
+            return Surname + " " +  FirstName + " " + Patronymic;
 
         }
         public int Age()

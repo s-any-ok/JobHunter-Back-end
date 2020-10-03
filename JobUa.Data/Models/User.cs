@@ -13,7 +13,7 @@ namespace JobUa.Data.Models
         public string Password { get; set; }
         public string SecretWord { get; set; }
         public string Mail { get; set; }
-        public List<string> ContactNumbers { get; set; }
+        public string ContactNumber { get; set; }
 
         public bool IsValPassword(string inputPassword) {
             int minLen = 8;
