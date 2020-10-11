@@ -8,23 +8,21 @@ namespace JobUa.Data.Models
     public class User
     {
         public Guid UserID { get; private set; }
+        public Guid ChildID { get; set; }
+        public bool isCompany { get; set; }
         public string UserName { get; set; }
         public string UserLogin { get; set; }
         public string UserPassword { get; set; }
         public string SecretWord { get; set; }
-        public string Mail { get; set; }
-        public string ContactNumber { get; set; }
-        public bool isCompany { get; set; }
-        public Guid ChildID { get; set; }
+        public string Email { get; set; }
+        public string PhoneNumber { get; set; }
+        
         public DateTime RegistrationData { get; set; }
 
         public bool IsValPassword(string inputPassword) {
             int minLen = 8;
             int maxLen = 30;
-            if (inputPassword.Length > minLen && inputPassword.Length < maxLen) {
-                return true;
-            }
-            return true;
+            return inputPassword.Length > minLen && inputPassword.Length < maxLen;
         }
         public bool IsValEmail(string InputEmail)
         {
@@ -40,26 +38,10 @@ namespace JobUa.Data.Models
         {
             int minLen = 3;
             int maxLen = 30;
-            if (InputSecretWord.Length > minLen && InputSecretWord.Length < maxLen)
-            {
-                return true;
-            }
-            return true;
+            return InputSecretWord.Length > minLen && InputSecretWord.Length < maxLen;
         }
-        public bool IsCorrectPassword(string InputPassword)
-        {
-            if (InputPassword == UserPassword) {
-                return true;
-            }
-            return false;
-        }
-        public bool IsCorrectSecretWord(string InputSecretWord)
-        {
-            if (InputSecretWord == SecretWord)
-            {
-                return true;
-            }
-            return false;
-        }
+        public bool IsCorrectPassword(string InputPassword) => InputPassword == UserPassword;
+        public bool IsCorrectSecretWord(string InputSecretWord) => InputSecretWord == SecretWord;
+       
     }
 }

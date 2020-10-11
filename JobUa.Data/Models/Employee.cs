@@ -8,38 +8,27 @@ namespace JobUa.Data.Models
     {
         public Guid EmployeeID { get; private set; }
         public string FirstName { get; set; }
-        public string Surname { get; set; }
-        public string Patronymic { get; set; }
-        public string Education { get; set; }
+        public string MiddleName { get; set; }
+        public string LastName { get; set; }
         public Gender Gender { get; set; }
+        public string Education { get; set; }
+        public string AdditionalEducation { get; set; }
+        public string Objective { get; set; }
+        public string Experience { get; set; }
+        public string Skills { get; set; }
         public DateTime Birthday { get; set; }
-        public List<string> PreviousJobs { get; set; }
-        public List<string> Objectives { get; set; }
-        public List<string> Skills { get; set; }
+        public string Adress { get; set; }
+        public byte[] PhotoData { get; set; }
 
-        public override string ToString()
-        {
-            return Surname + " " +  FirstName + " " + Patronymic;
 
-        }
+        public override string ToString() => LastName + " " + FirstName + " " + MiddleName;
         public int Age()
         {
             var today = DateTime.Today;
             int age = today.Year - Birthday.Year;
             return age;
         }
-        public void AddSkill(string Skill)
-        {
-            Skills.Add(Skill);
-        }
-        public void AddObjective(string Objective)
-        {
-            Objectives.Add(Objective);
-        }
-        public void AddPreviousJob(string PreviousJob)
-        {
-            PreviousJobs.Add(PreviousJob);
-        }
+        
     }
     public enum Gender {Male, Female, Custom }
 }
