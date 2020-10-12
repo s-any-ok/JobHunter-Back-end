@@ -11,8 +11,8 @@ namespace JobUa.Data.Models
         public Guid ChildID { get; set; }
         public bool isCompany { get; set; }
         public string UserName { get; set; }
-        public string UserLogin { get; set; }
-        public string UserPassword { get; set; }
+        public string Login { get; set; }
+        public string Password { get; set; }
         public string SecretWord { get; set; }
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
@@ -40,7 +40,7 @@ namespace JobUa.Data.Models
             int maxLen = 30;
             return InputSecretWord.Length > minLen && InputSecretWord.Length < maxLen;
         }
-        public bool IsCorrectPassword(string InputPassword) => InputPassword == UserPassword;
+        public bool IsCorrectPassword(string InputPassword) => InputPassword == Password;
         public bool IsCorrectSecretWord(string InputSecretWord) => InputSecretWord == SecretWord;
        
     }
