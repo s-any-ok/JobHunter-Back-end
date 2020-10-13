@@ -23,8 +23,8 @@ namespace WebAPI.Controllers
                                                             isCompany,
                                                             ChildID) 
                                                             Values 
-                                                            ('" + user.UserLogin + @"',
-                                                             '" + user.UserPassword + @"',
+                                                            ('" + user.Login + @"',
+                                                             '" + user.Password + @"',
                                                              '" + user.isCompany + @"',
                                                              '" + user.ChildID + @"')";
 

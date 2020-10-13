@@ -42,11 +42,11 @@ namespace WebAPI.Controllers
                                                             RegistrationData)  
                                                             Values 
                                                             ('" + comp.UserName + @"',
-                                                             '" + comp.CompanyName + @"',
+                                                             '" + comp.Name + @"',
                                                              '" + comp.Information + @"',
-                                                             '" + comp.CompanySite + @"',
-                                                             '" + comp.Mail + @"',
-                                                             '" + comp.ContactNumber + @"',
+                                                             '" + comp.Link + @"',
+                                                             '" + comp.Email + @"',
+                                                             '" + comp.PhoneNumber + @"',
                                                              '" + comp.SecretWord + @"',
                                                              '" + comp.RegistrationData + @"')";
 
@@ -71,11 +71,11 @@ namespace WebAPI.Controllers
             {
                 DataTable table = new DataTable();
                 string query = @"update dbo.Companies set 
-                                                            CompanyName = '" + comp.CompanyName + @"',
+                                                            CompanyName = '" + comp.Name + @"',
                                                             Information = '" + comp.Information + @"',
-                                                            Mail = '" + comp.Mail + @"',
-                                                            CompanySite = '" + comp.CompanySite + @"',
-                                                            ContactNumber = '" + comp.ContactNumber + @"'
+                                                            Mail = '" + comp.Email + @"',
+                                                            CompanySite = '" + comp.Link + @"',
+                                                            ContactNumber = '" + comp.PhoneNumber + @"'
                                                             where
                                                             CompanyID = '" + comp.CompanyID + @"'";
 

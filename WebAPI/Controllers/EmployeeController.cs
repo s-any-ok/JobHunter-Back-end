@@ -47,14 +47,14 @@ namespace WebAPI.Controllers
                                                             Values 
                                                             ('" + emp.EmployeeID + @"',
                                                              '" + emp.UserName + @"',
-                                                             '" + emp.Surname + @"',
                                                              '" + emp.FirstName + @"',
-                                                             '" + emp.Patronymic + @"',
+                                                             '" + emp.MiddleName + @"',
+                                                             '" + emp.LastName + @"',
                                                              '" + emp.Education + @"',
                                                              '" + emp.Gender + @"',
                                                              '" + emp.Birthday + @"',
-                                                             '" + emp.Mail + @"',
-                                                             '" + emp.ContactNumber + @"',
+                                                             '" + emp.Email + @"',
+                                                             '" + emp.PhoneNumber + @"',
                                                              '" + emp.SecretWord + @"',
                                                              '" + emp.RegistrationData + @"')";
 
@@ -81,11 +81,11 @@ namespace WebAPI.Controllers
             {
                 DataTable table = new DataTable();
                 string query = @"update  dbo.Employees set 
-                                                            Surname = '" + emp.Surname + @"',
+                                                            Surname = '" + emp.LastName + @"',
                                                             FirstName = '" + emp.FirstName + @"',
-                                                            Patronymic = '" + emp.Patronymic + @"',
+                                                            Patronymic = '" + emp.MiddleName + @"',
                                                             Education = '" + emp.Education + @"',
-                                                            ContactNumber = '" + emp.ContactNumber + @"'
+                                                            ContactNumber = '" + emp.PhoneNumber + @"'
                                                             where
                                                             EmployeeID = '" + emp.EmployeeID + @"'";
 

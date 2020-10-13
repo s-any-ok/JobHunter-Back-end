@@ -42,11 +42,11 @@ namespace WebAPI.Controllers
                                                             RegistrationData) 
                                                             Values 
                                                             ('" + vac.CompanyID + @"',
-                                                             '" + vac.VacancyName + @"',
+                                                             '" + vac.Objective + @"',
                                                              '" + vac.Information + @"',
-                                                             '" + vac.ContactNumber + @"',
-                                                             '" + vac.Latitude + @"'
-                                                             '" + vac.Longitude + @"',
+                                                             '" + vac.PhoneNumber + @"',
+                                                             '" + vac.Adress + @"'
+                                                             '" + vac.Employment + @"',
                                                              '" + vac.Salary + @"'
                                                              '" + vac.RegistrationData + @"')";
 
@@ -71,9 +71,9 @@ namespace WebAPI.Controllers
             {
                 DataTable table = new DataTable();
                 string query = @"update dbo.Vacancies set  
-                                                            VacancyName = '" + vac.VacancyName + @"',
+                                                            VacancyName = '" + vac.Objective + @"',
                                                             Information = '" + vac.Information + @"',
-                                                            ContactNumber =  '" + vac.ContactNumber + @"',
+                                                            ContactNumber =  '" + vac.PhoneNumber + @"',
                                                             Salary = '" + vac.Salary + @"'
                                                             where
                                                             VacancyID = '" + vac.VacancyID + @"'";
