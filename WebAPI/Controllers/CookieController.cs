@@ -1,11 +1,8 @@
 ﻿using JobUa.Data.Models;
 using System;
 using System.Collections.Specialized;
-using System.Linq;
-using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Threading.Tasks;
 using System.Web.Http;
 
 
@@ -51,25 +48,15 @@ namespace WebAPI.Controllers
             return resp;
 
         }
-       /* public async Task<IHttpActionResult> Post(string login, string password)
-        {
-            
-            var cookie = new CookieHeaderValue("myCookie", login);
-            
-            var resp = new HttpResponseMessage();
-            resp.StatusCode = HttpStatusCode.OK;
-            resp.Headers.AddCookies(new[] { cookie });
-            return ResponseMessage(resp);
-        }*/
         public HttpResponseMessage DeleteCookie(string id)
         {
             var resp = new HttpResponseMessage();
 
             var vals = new NameValueCollection(); // using System.Collections.Specialized
-            vals["uid"] = id;
+            vals["uid"] = null;
             vals["login"] = null;
             vals["password"] = null;
-            var cookie = new CookieHeaderValue("person", vals);
+            var cookie = new CookieHeaderValue("user", vals);
 
             cookie.Expires = DateTimeOffset.Now.AddHours(1);
             cookie.Domain = Request.RequestUri.Host;

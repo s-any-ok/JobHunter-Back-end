@@ -46,7 +46,7 @@ namespace WebAPI.Controllers
                                                              '" + vac.Objective + @"',
                                                              '" + vac.Information + @"',
                                                              '" + vac.Experience + @"',
-                                                             '" + vac.Employment + @"'
+                                                             '" + vac.Employment + @"',
                                                              '" + vac.Salary + @"',
                                                              '" + vac.Adress + @"',
                                                              '" + vac.PhoneNumber + @"',

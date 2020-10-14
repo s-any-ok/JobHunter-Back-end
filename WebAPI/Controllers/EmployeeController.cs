@@ -43,8 +43,7 @@ namespace WebAPI.Controllers
                                                             Experience,
                                                             Skills,
                                                             Adress,
-                                                            Birthday,
-                                                            PhotoData) 
+                                                            Birthday) 
                                                             Values 
                                                             ('" + emp.EmployeeID + @"',
                                                              '" + emp.FirstName + @"',
@@ -57,8 +56,7 @@ namespace WebAPI.Controllers
                                                              '" + emp.Experience + @"',
                                                              '" + emp.Skills + @"',
                                                              '" + emp.Adress + @"',
-                                                             '" + emp.Birthday + @"',
-                                                             '" + emp.PhotoData + @"')";
+                                                             '" + emp.Birthday + @"')";
 
                 using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["JobSearchAppDB"].ConnectionString))
                 using (SqlCommand cmd = new SqlCommand(query, con))

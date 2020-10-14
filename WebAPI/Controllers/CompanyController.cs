@@ -38,8 +38,7 @@ namespace WebAPI.Controllers
                                                             Information,
                                                             isVip,
                                                             Link,
-                                                            BusinessType,
-                                                            ImageData)  
+                                                            BusinessType)  
                                                             Values 
                                                             ('" + comp.CompanyID + @"',
                                                              '" + comp.TIN + @"',
@@ -47,8 +46,7 @@ namespace WebAPI.Controllers
                                                              '" + comp.Information + @"',
                                                              '" + comp.IsVip + @"',
                                                              '" + comp.Link + @"',
-                                                             '" + comp.BusinessType + @"',
-                                                             '" + comp.ImageData + @"')";
+                                                             '" + comp.BusinessType + @"')";
 
                 using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["JobSearchAppDB"].ConnectionString))
                 using (SqlCommand cmd = new SqlCommand(query, con))
