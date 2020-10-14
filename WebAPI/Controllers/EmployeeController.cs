@@ -33,30 +33,32 @@ namespace WebAPI.Controllers
             {
                 DataTable table = new DataTable();
                 string query = @"insert into  dbo.Employees (EmployeeID,
-                                                            UserName,
-                                                            Surname,
                                                             FirstName,
-                                                            Patronymic,
+                                                            MiddleName,
+                                                            LastName,
                                                             Education,
+                                                            AdditionalEducation,
                                                             Gender,
+                                                            Objective,
+                                                            Experience,
+                                                            Skills,
+                                                            Adress,
                                                             Birthday,
-                                                            Mail,
-                                                            ContactNumber,
-                                                            SecretWord,
-                                                            RegistrationData) 
+                                                            PhotoData) 
                                                             Values 
                                                             ('" + emp.EmployeeID + @"',
-                                                             '" + emp.UserName + @"',
                                                              '" + emp.FirstName + @"',
                                                              '" + emp.MiddleName + @"',
                                                              '" + emp.LastName + @"',
                                                              '" + emp.Education + @"',
+                                                             '" + emp.AdditionalEducation + @"',
                                                              '" + emp.Gender + @"',
+                                                             '" + emp.Objective + @"',
+                                                             '" + emp.Experience + @"',
+                                                             '" + emp.Skills + @"',
+                                                             '" + emp.Adress + @"',
                                                              '" + emp.Birthday + @"',
-                                                             '" + emp.Email + @"',
-                                                             '" + emp.PhoneNumber + @"',
-                                                             '" + emp.SecretWord + @"',
-                                                             '" + emp.RegistrationData + @"')";
+                                                             '" + emp.PhotoData + @"')";
 
                 using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["JobSearchAppDB"].ConnectionString))
                 using (SqlCommand cmd = new SqlCommand(query, con))
@@ -81,13 +83,18 @@ namespace WebAPI.Controllers
             {
                 DataTable table = new DataTable();
                 string query = @"update  dbo.Employees set 
-                                                            Surname = '" + emp.LastName + @"',
-                                                            FirstName = '" + emp.FirstName + @"',
-                                                            Patronymic = '" + emp.MiddleName + @"',
-                                                            Education = '" + emp.Education + @"',
-                                                            ContactNumber = '" + emp.PhoneNumber + @"'
+                                                            FirstName =                 '" + emp.FirstName + @"',
+                                                            MiddleName =                '" + emp.MiddleName + @"',
+                                                            LastName =                  '" + emp.LastName + @"',
+                                                            Education =                 '" + emp.Education + @"',
+                                                            AdditionalEducation =       '" + emp.AdditionalEducation + @"',
+                                                            Objective =                 '" + emp.Objective + @"',
+                                                            Experience =                '" + emp.Experience + @"',
+                                                            Skills =                    '" + emp.Skills + @"',
+                                                            Adress =                    '" + emp.Adress + @"',
+                                                            PhotoData =                 '" + emp.PhotoData + @"'
                                                             where
-                                                            EmployeeID = '" + emp.EmployeeID + @"'";
+                                                            EmployeeID =                '" + emp.EmployeeID + @"'";
 
                 using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["JobSearchAppDB"].ConnectionString))
                 using (SqlCommand cmd = new SqlCommand(query, con))

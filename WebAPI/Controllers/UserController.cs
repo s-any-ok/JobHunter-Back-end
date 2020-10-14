@@ -18,15 +18,25 @@ namespace WebAPI.Controllers
             {
                 DataTable table = new DataTable();
                 //string query = @"Select EmployeeID, CompanyID from dbo.Vacancies where UserLogin = '" + login + @"' AND UserPassword = '" + password + @"'";
-                string query = @"insert into dbo.Users (UserLogin,
-                                                            UserPassword,
+                string query = @"insert into dbo.Users      (ChildID,
                                                             isCompany,
-                                                            ChildID) 
+                                                            UserName,
+                                                            UserLogin,
+                                                            UserPassword,
+                                                            SecretWord,
+                                                            Email,
+                                                            PhoneNumber,
+                                                            RegistrationData) 
                                                             Values 
-                                                            ('" + user.Login + @"',
-                                                             '" + user.Password + @"',
+                                                            ('" + user.ChildID + @"',
                                                              '" + user.isCompany + @"',
-                                                             '" + user.ChildID + @"')";
+                                                             '" + user.UserName + @"',
+                                                             '" + user.Login + @"',
+                                                             '" + user.Password + @"',
+                                                             '" + user.SecretWord + @"',
+                                                             '" + user.Email + @"',
+                                                             '" + user.PhoneNumber + @"',
+                                                             '" + user.RegistrationData + @"')";
 
                 using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["JobSearchAppDB"].ConnectionString))
                 using (SqlCommand cmd = new SqlCommand(query, con))

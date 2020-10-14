@@ -32,6 +32,6 @@ namespace JobUa.Data.Models
         Education, Security, Retailers, 
         Services, Agriculture, Transportation,
         RealEstate, Advertising, Manufacturing,
-        Mining, Utilities  
+        Mining, Utilities, Other  
     }
 }

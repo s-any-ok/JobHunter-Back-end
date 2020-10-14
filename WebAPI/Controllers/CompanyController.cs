@@ -32,23 +32,23 @@ namespace WebAPI.Controllers
             try
             {
                 DataTable table = new DataTable();
-                string query = @"insert into dbo.Companies (UserName,
-                                                            CompanyName,
+                string query = @"insert into dbo.Companies (CompanyID,
+                                                            TIN,
+                                                            CompName,
                                                             Information,
-                                                            CompanySite,
-                                                            Mail,
-                                                            ContactNumber,
-                                                            SecretWord,
-                                                            RegistrationData)  
+                                                            isVip,
+                                                            Link,
+                                                            BusinessType,
+                                                            ImageData)  
                                                             Values 
-                                                            ('" + comp.UserName + @"',
+                                                            ('" + comp.CompanyID + @"',
+                                                             '" + comp.TIN + @"',
                                                              '" + comp.Name + @"',
                                                              '" + comp.Information + @"',
+                                                             '" + comp.IsVip + @"',
                                                              '" + comp.Link + @"',
-                                                             '" + comp.Email + @"',
-                                                             '" + comp.PhoneNumber + @"',
-                                                             '" + comp.SecretWord + @"',
-                                                             '" + comp.RegistrationData + @"')";
+                                                             '" + comp.BusinessType + @"',
+                                                             '" + comp.ImageData + @"')";
 
                 using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["JobSearchAppDB"].ConnectionString))
                 using (SqlCommand cmd = new SqlCommand(query, con))
@@ -71,13 +71,13 @@ namespace WebAPI.Controllers
             {
                 DataTable table = new DataTable();
                 string query = @"update dbo.Companies set 
-                                                            CompanyName = '" + comp.Name + @"',
-                                                            Information = '" + comp.Information + @"',
-                                                            Mail = '" + comp.Email + @"',
-                                                            CompanySite = '" + comp.Link + @"',
-                                                            ContactNumber = '" + comp.PhoneNumber + @"'
+                                                            CompName =      '" + comp.Name + @"',
+                                                            Information =   '" + comp.Information + @"',
+                                                            Link =          '" + comp.Link + @"',
+                                                            BusinessType =  '" + comp.BusinessType + @"',
+                                                            ImageData =     '" + comp.ImageData + @"'
                                                             where
-                                                            CompanyID = '" + comp.CompanyID + @"'";
+                                                            CompanyID =     '" + comp.CompanyID + @"'";
 
                 using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["JobSearchAppDB"].ConnectionString))
                 using (SqlCommand cmd = new SqlCommand(query, con))
@@ -99,7 +99,7 @@ namespace WebAPI.Controllers
             try
             {
                 DataTable table = new DataTable();
-                string query = @"delete from dbo.Companies where  CompanyID = " + id;
+                string query = @"delete from dbo.Companies where CompanyID = " + id;
                                                             
                 using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["JobSearchAppDB"].ConnectionString))
                 using (SqlCommand cmd = new SqlCommand(query, con))

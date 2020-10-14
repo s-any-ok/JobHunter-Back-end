@@ -33,21 +33,23 @@ namespace WebAPI.Controllers
             {
                 DataTable table = new DataTable();
                 string query = @"insert into dbo.Vacancies (CompanyID,
-                                                            VacancyName,
+                                                            Objective,
                                                             Information,
-                                                            ContactNumber,
-                                                            Latitude,
-                                                            Longitude,
+                                                            Experience,
+                                                            Employment,
                                                             Salary,
+                                                            Adress,
+                                                            PhoneNumber,
                                                             RegistrationData) 
                                                             Values 
                                                             ('" + vac.CompanyID + @"',
                                                              '" + vac.Objective + @"',
                                                              '" + vac.Information + @"',
+                                                             '" + vac.Experience + @"',
+                                                             '" + vac.Employment + @"'
+                                                             '" + vac.Salary + @"',
+                                                             '" + vac.Adress + @"',
                                                              '" + vac.PhoneNumber + @"',
-                                                             '" + vac.Adress + @"'
-                                                             '" + vac.Employment + @"',
-                                                             '" + vac.Salary + @"'
                                                              '" + vac.RegistrationData + @"')";
 
                 using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["JobSearchAppDB"].ConnectionString))
@@ -71,12 +73,15 @@ namespace WebAPI.Controllers
             {
                 DataTable table = new DataTable();
                 string query = @"update dbo.Vacancies set  
-                                                            VacancyName = '" + vac.Objective + @"',
-                                                            Information = '" + vac.Information + @"',
-                                                            ContactNumber =  '" + vac.PhoneNumber + @"',
-                                                            Salary = '" + vac.Salary + @"'
+                                                            Objective =     '" + vac.Objective + @"',
+                                                            Information =   '" + vac.Information + @"',
+                                                            Experience =    '" + vac.Experience + @"',
+                                                            Employment =    '" + vac.Employment + @"',
+                                                            Salary =        '" + vac.Salary + @"',
+                                                            Adress =        '" + vac.Adress + @"',
+                                                            PhoneNumber =   '" + vac.PhoneNumber + @"'
                                                             where
-                                                            VacancyID = '" + vac.VacancyID + @"'";
+                                                            VacancyID =     '" + vac.VacancyID + @"'";
 
                 using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["JobSearchAppDB"].ConnectionString))
                 using (SqlCommand cmd = new SqlCommand(query, con))
