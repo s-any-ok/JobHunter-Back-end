@@ -11,6 +11,7 @@ using System.Collections.Specialized;
 using System.Net.Http.Headers;
 using System.Linq;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace WebAPI.Controllers
 {
@@ -21,7 +22,6 @@ namespace WebAPI.Controllers
             try
             {
                 DataTable table = new DataTable();
-                //string query = @"Select EmployeeID, CompanyID from dbo.Vacancies where UserLogin = '" + login + @"' AND UserPassword = '" + password + @"'";
                 string query = @"insert into dbo.Users      (ChildID,
                                                             isCompany,
                                                             UserName,
@@ -73,29 +73,37 @@ namespace WebAPI.Controllers
                 da.Fill(table);
             }
 
-            var id = table.Rows[0][0];
-            var childId = table.Rows[0][1];
-            var isCompany = table.Rows[0][2];
-
            if (table.Rows.Count != 0)
             {
+                var id = table.Rows[0][0];
+                var childId = table.Rows[0][1];
+                var isCompany = (bool)table.Rows[0][2] ? 1 : 0;
+
                 var resp = new HttpResponseMessage();
 
-                var vals = new NameValueCollection(); // using System.Collections.Specialized
+                var vals = new NameValueCollection(); 
                 vals["Id"] = id.ToString();
                 vals["ChildID"] = childId.ToString();
                 vals["IsCompany"] = isCompany.ToString();
+                vals["Login"] = user.Login;
+                vals["Password"] = user.Password;
                 var cookie = new CookieHeaderValue("user", vals);
-
 
                 cookie.Expires = DateTimeOffset.Now.AddHours(1);
                 cookie.Domain = Request.RequestUri.Host;
                 cookie.Path = "/";
 
                 resp.Headers.AddCookies(new CookieHeaderValue[] { cookie });
+                var responseObj = new { 
+                    resultCode = 0,
+                    Id = vals["Id"], ChildID = vals["ChildID"], IsCompany = vals["IsCompany"]
+                };
+
+                resp.Content = new StringContent(JsonConvert.SerializeObject(responseObj),
+                                                 System.Text.Encoding.UTF8, "application/json");
                 return resp;
             }
-            return Request.CreateResponse(HttpStatusCode.OK, table);
+            return Request.CreateResponse(HttpStatusCode.OK, "User did not be found!");
  
         }
         [HttpGet]
@@ -103,28 +111,27 @@ namespace WebAPI.Controllers
         public IHttpActionResult Auth()
         {
             CookieHeaderValue cookie = Request.Headers.GetCookies("user").FirstOrDefault();
-            if (cookie != null)
+            if (cookie != null  &&  cookie["user"]["Id"] != null)
             {
                 CookieState cookieState = cookie["user"];
-                Dictionary<string, string> table = new Dictionary<string, string>(3);
+                Dictionary<string, object> table = new Dictionary<string, object>(6);
+                table.Add("resultCode", 1);
                 table.Add("Id", cookieState["Id"]);
                 table.Add("ChildID", cookieState["ChildID"]);
                 table.Add("IsCompany", cookieState["IsCompany"]);
+                table.Add("Login", cookieState["Login"]);
+                table.Add("Password", cookieState["Password"]);
                 return Ok(table);
             }
-            return NotFound();
+            return Ok("You are not authorized");
         }
         [HttpDelete]
-        [Route("api/user/logout/{id}")]
-        public HttpResponseMessage Logout(string id)
+        [Route("api/user/logout")]
+        public HttpResponseMessage Logout()
         {
             var resp = new HttpResponseMessage();
 
             var vals = new NameValueCollection();
-            vals["Id"] = null;
-            vals["ChildID"] = null;
-            vals["IsCompany"] = null;
-
             var cookie = new CookieHeaderValue("user", vals);
 
             cookie.Expires = DateTimeOffset.Now.AddHours(1);
