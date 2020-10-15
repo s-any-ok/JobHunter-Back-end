@@ -6,7 +6,7 @@ namespace JobUa.Data.Models
 {
     public class Employee : User
     {
-        public Guid EmployeeID { get; private set; }
+        public Guid EmployeeID { get; set; }
         public string FirstName { get; set; }
         public string MiddleName { get; set; }
         public string LastName { get; set; }

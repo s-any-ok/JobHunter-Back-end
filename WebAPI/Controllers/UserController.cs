@@ -15,6 +15,7 @@ using Newtonsoft.Json;
 
 namespace WebAPI.Controllers
 {
+    [RoutePrefix("api/user")]
     public class UserController : ApiController
     {
         public string Post(User user)
@@ -59,7 +60,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost]
-        [Route("api/user/login")]
+        [Route("login")]
         public HttpResponseMessage Login(User user) {
 
             DataTable table = new DataTable();
@@ -107,7 +108,7 @@ namespace WebAPI.Controllers
  
         }
         [HttpGet]
-        [Route("api/user/auth")]
+        [Route("auth")]
         public IHttpActionResult Auth()
         {
             CookieHeaderValue cookie = Request.Headers.GetCookies("user").FirstOrDefault();
@@ -115,7 +116,7 @@ namespace WebAPI.Controllers
             {
                 CookieState cookieState = cookie["user"];
                 Dictionary<string, object> table = new Dictionary<string, object>(6);
-                table.Add("resultCode", 1);
+                table.Add("resultCode", 0);
                 table.Add("Id", cookieState["Id"]);
                 table.Add("ChildID", cookieState["ChildID"]);
                 table.Add("IsCompany", cookieState["IsCompany"]);
@@ -126,7 +127,7 @@ namespace WebAPI.Controllers
             return Ok("You are not authorized");
         }
         [HttpDelete]
-        [Route("api/user/logout")]
+        [Route("logout")]
         public HttpResponseMessage Logout()
         {
             var resp = new HttpResponseMessage();
