@@ -27,6 +27,21 @@ namespace WebAPI.Controllers
 
             return Request.CreateResponse(HttpStatusCode.OK, table);
         }
+        public HttpResponseMessage Get(Guid id)
+        {
+            DataTable table = new DataTable();
+            string query = @"Select * from dbo.Employees where EmployeeID = '" + id + @"'";
+
+            using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["JobSearchAppDB"].ConnectionString))
+            using (var cmd = new SqlCommand(query, con))
+            using (var da = new SqlDataAdapter(cmd))
+            {
+                cmd.CommandType = CommandType.Text;
+                da.Fill(table);
+            }
+
+            return Request.CreateResponse(HttpStatusCode.OK, table);
+        }
         public string Post(Employee emp)
         {
             try
@@ -109,12 +124,12 @@ namespace WebAPI.Controllers
             }
 
         }
-        public string Delete(int id)
+        public string Delete(Guid? id)
         {
             try
             {
                 DataTable table = new DataTable();
-                string query = @"delete from dbo.Employees where EmployeeID = " + id;
+                string query = @"delete from dbo.Employees where EmployeeID = '" + id + @"'";
 
                 using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["JobSearchAppDB"].ConnectionString))
                 using (SqlCommand cmd = new SqlCommand(query, con))

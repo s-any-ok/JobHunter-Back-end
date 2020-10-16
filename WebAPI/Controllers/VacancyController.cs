@@ -7,6 +7,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
 using JobUa.Data.Models;
+using Microsoft.Ajax.Utilities;
 
 namespace WebAPI.Controllers
 {
@@ -16,6 +17,21 @@ namespace WebAPI.Controllers
         {
             DataTable table = new DataTable();
             string query = @"Select * from dbo.Vacancies";
+
+            using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["JobSearchAppDB"].ConnectionString))
+            using (var cmd = new SqlCommand(query, con))
+            using (var da = new SqlDataAdapter(cmd))
+            {
+                cmd.CommandType = CommandType.Text;
+                da.Fill(table);
+            }
+
+            return Request.CreateResponse(HttpStatusCode.OK, table);
+        }
+        public HttpResponseMessage Get(Guid id)
+        {
+            DataTable table = new DataTable();
+            string query = @"Select * from dbo.Vacancies where VacancyID = '" + id + @"'";
 
             using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["JobSearchAppDB"].ConnectionString))
             using (var cmd = new SqlCommand(query, con))
@@ -98,12 +114,13 @@ namespace WebAPI.Controllers
             }
 
         }
-        public string Delete(int id)
+        public string Delete(Guid? id)
         {
+            
             try
             {
                 DataTable table = new DataTable();
-                string query = @"delete from dbo.Vacancies where VacancyID = " + id;
+                string query = @"delete from dbo.Vacancies where VacancyID = '" + id + @"'";
 
                 using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["JobSearchAppDB"].ConnectionString))
                 using (SqlCommand cmd = new SqlCommand(query, con))

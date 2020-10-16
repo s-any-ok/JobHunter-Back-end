@@ -104,7 +104,7 @@ namespace WebAPI.Controllers
                                                  System.Text.Encoding.UTF8, "application/json");
                 return resp;
             }
-            return Request.CreateResponse(HttpStatusCode.OK, "User did not be found!");
+            return Request.CreateResponse(HttpStatusCode.OK, "Incorrect login or password!");
  
         }
         [HttpGet]
