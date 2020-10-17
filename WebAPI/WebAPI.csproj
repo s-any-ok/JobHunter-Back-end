@@ -166,6 +166,8 @@
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\CookieController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\RelationsControllers\SaveEmployeeController.cs" />
+    <Compile Include="Controllers\RelationsControllers\SaveVacancyController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\VacancyController.cs" />
     <Compile Include="Global.asax.cs">
