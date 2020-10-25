@@ -6,7 +6,7 @@ namespace JobUa.Data.Models
 {
     public class Vacancy
     {
-        public Guid VacancyID { get; private set; }
+        public Guid VacancyID { get; set; }
         public Guid CompanyID { get; set; }
         public string Objective { get; set; }
         public string Information { get; set; }
@@ -14,7 +14,7 @@ namespace JobUa.Data.Models
         public string Employment { get; set; }
         public decimal Salary { get; set; }
         public string Adress { get; set; }
-        public string PhoneNumber { get; set; }
+        public string ContactPhoneNumber { get; set; }
         public DateTime RegistrationData { get; set; }
         public int TimeAfterRegistration()
         {
@@ -49,6 +49,8 @@ namespace JobUa.Data.Models
             const decimal conversionRate = 28.3m;
             return Salary * conversionRate;
         }
-       
+
+        public Guid getId() => VacancyID;
+        
     }
 }

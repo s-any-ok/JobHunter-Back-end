@@ -14,7 +14,7 @@ namespace JobUa.Data.Models
         public string Password { get; set; }
         public string SecretWord { get; set; }
         public string Email { get; set; }
-        public string PhoneNumber { get; set; }
+        public string ContactPhoneNumber { get; set; }
         
         public DateTime RegistrationData { get; set; }
 

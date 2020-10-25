@@ -5,8 +5,8 @@ namespace JobUa.Data.Models.Relations
     public class SaveVacancy
     {
         public Guid SaveID { get; private set; }
-        public Guid VacancyID { get; set; }
-        public Guid EmployeeID { get; set; }
+        public Vacancy Vacancy { get; set; }
+        public Employee Employee { get; set; }
         public DateTime SaveData { get; set; }
     }
 }

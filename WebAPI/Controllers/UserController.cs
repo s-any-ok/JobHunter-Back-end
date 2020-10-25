@@ -30,7 +30,7 @@ namespace WebAPI.Controllers
                                                             UserPassword,
                                                             SecretWord,
                                                             Email,
-                                                            PhoneNumber,
+                                                            ContactPhoneNumber,
                                                             RegistrationData) 
                                                             Values 
                                                             ('" + user.ChildID + @"',
@@ -40,7 +40,7 @@ namespace WebAPI.Controllers
                                                              '" + user.Password + @"',
                                                              '" + user.SecretWord + @"',
                                                              '" + user.Email + @"',
-                                                             '" + user.PhoneNumber + @"',
+                                                             '" + user.ContactPhoneNumber + @"',
                                                              '" + user.RegistrationData + @"')";
 
                 using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["JobSearchAppDB"].ConnectionString))

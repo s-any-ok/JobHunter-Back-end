@@ -55,7 +55,7 @@ namespace WebAPI.Controllers
                                                             Employment,
                                                             Salary,
                                                             Adress,
-                                                            PhoneNumber,
+                                                            ContactPhoneNumber,
                                                             RegistrationData) 
                                                             Values 
                                                             ('" + vac.CompanyID + @"',
@@ -65,7 +65,7 @@ namespace WebAPI.Controllers
                                                              '" + vac.Employment + @"',
                                                              '" + vac.Salary + @"',
                                                              '" + vac.Adress + @"',
-                                                             '" + vac.PhoneNumber + @"',
+                                                             '" + vac.ContactPhoneNumber + @"',
                                                              '" + vac.RegistrationData + @"')";
 
                 using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["JobSearchAppDB"].ConnectionString))
@@ -95,7 +95,7 @@ namespace WebAPI.Controllers
                                                             Employment =    '" + vac.Employment + @"',
                                                             Salary =        '" + vac.Salary + @"',
                                                             Adress =        '" + vac.Adress + @"',
-                                                            PhoneNumber =   '" + vac.PhoneNumber + @"'
+                                                            ContactPhoneNumber =   '" + vac.ContactPhoneNumber + @"'
                                                             where
                                                             VacancyID =     '" + vac.VacancyID + @"'";
 
