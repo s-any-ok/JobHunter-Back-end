@@ -13,7 +13,7 @@ namespace JobUa.Data.Models
         //}
    
         public Guid VacancyID { get; private set; }
-        public Guid CompanyID { get; set; }
+        public Guid CompanyID { get; private set; }
         public string Objective { get; set; }
         public string Information { get; set; }
         public string Experience { get; set; }

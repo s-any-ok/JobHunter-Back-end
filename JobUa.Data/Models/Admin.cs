@@ -1,11 +1,10 @@
 ﻿using System;
 
-
 namespace JobUa.Data.Models
 {
     public class Admin
     {
-        public Guid AdminID { get; private set; }
+        private Guid AdminID;
         public string AdminName { get; set; }
         public string Obligations { get; set; }
         public string Login { get; set; }

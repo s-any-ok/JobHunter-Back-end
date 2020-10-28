@@ -3,12 +3,11 @@ using System;
 
 namespace JobUa.Data.Models.Relations
 {
-    public class SaveEmployee
+    public class RespondToEmployee
     {
-        private Guid SaveID;
-        public DBCompany DBComp;
-        public DBEmployee DBEmp;
-
+        public Guid RespondID { get; private set; }
+        private DBCompany DBComp;
+        private DBEmployee DBEmp;
         public Company Company
         {
             get { return DBComp.getCmpObjByGuid(_CompanyID); }
@@ -23,6 +22,6 @@ namespace JobUa.Data.Models.Relations
         }
         private Guid _CompanyID;
         private Guid _EmployeeID;
-        public DateTime SaveData { get; set; }
+        public DateTime RespondData { get; set; }
     }
 }

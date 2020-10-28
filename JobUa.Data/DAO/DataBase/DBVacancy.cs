@@ -4,7 +4,6 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 
-
 namespace JobUa.Data.DAO.DataBase
 {
     public class DBVacancy : IVacancy

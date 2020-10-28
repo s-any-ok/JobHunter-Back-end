@@ -1,14 +1,13 @@
 ﻿using JobUa.Data.DAO.DataBase;
 using System;
-using System.Linq;
 
 namespace JobUa.Data.Models.Relations
 {
-    public class SaveVacancy
+    public class RespondToVacancy
     {
-        private Guid SaveID;
-        public DBVacancy DBVac;
-        public DBEmployee DBEmp;
+        private Guid RespondID;
+        private DBVacancy DBVac;
+        private DBEmployee DBEmp;
         public Vacancy Vacancy
         {
             get { return DBVac.getVacObjByGuid(_VacancyID); }
@@ -21,9 +20,9 @@ namespace JobUa.Data.Models.Relations
             set { _EmployeeID = value.EmployeeID; }
 
         }
-        
+
         private Guid _VacancyID;
         private Guid _EmployeeID;
-        public DateTime SaveData { get; set; }
+        public DateTime RespondData { get; set; }
     }
 }

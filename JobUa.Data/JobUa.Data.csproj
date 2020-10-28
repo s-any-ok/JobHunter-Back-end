@@ -56,10 +56,10 @@
     <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\Company.cs" />
     <Compile Include="Models\Employee.cs" />
-    <Compile Include="Models\Relations\RespondToEmployee.cs" />
-    <Compile Include="Models\Relations\RespondToVacancy.cs" />
-    <Compile Include="Models\Relations\SaveEmployee.cs" />
-    <Compile Include="Models\Relations\SaveVacancy.cs" />
+    <Compile Include="Models\RelatedClasses\RespondToEmployee.cs" />
+    <Compile Include="Models\RelatedClasses\RespondToVacancy.cs" />
+    <Compile Include="Models\RelatedClasses\SaveEmployee.cs" />
+    <Compile Include="Models\RelatedClasses\SaveVacancy.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\Vacancy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

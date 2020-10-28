@@ -167,8 +167,8 @@
     <Compile Include="Controllers\CompanyController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
-    <Compile Include="Controllers\RelationsControllers\SaveEmployeeController.cs" />
-    <Compile Include="Controllers\RelationsControllers\SaveVacancyController.cs" />
+    <Compile Include="Controllers\RelatedClassesControllers\SaveEmployeeController.cs" />
+    <Compile Include="Controllers\RelatedClassesControllers\SaveVacancyController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\VacancyController.cs" />
     <Compile Include="Global.asax.cs">

@@ -1,5 +1,4 @@
-﻿using JobUa.Data.Models.Relations;
-using System;
+﻿using System;
 using System.Data;
 
 namespace JobUa.Data.DAO

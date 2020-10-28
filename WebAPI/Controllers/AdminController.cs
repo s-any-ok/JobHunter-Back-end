@@ -1,14 +1,11 @@
-﻿using System;
-using System.Net;
+﻿using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-
 using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
 using JobUa.Data.Models;
 using System.Collections.Specialized;
-using System.Net.Http.Headers;
 using Newtonsoft.Json;
 
 namespace WebAPI.Controllers

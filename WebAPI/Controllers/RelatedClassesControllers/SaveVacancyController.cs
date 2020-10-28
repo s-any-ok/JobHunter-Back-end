@@ -2,13 +2,9 @@
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-
-using JobUa.Data.Models.Relations;
 using JobUa.Data.DAO.DataBase;
 using JobUa.Data.DAO;
 using System.Data;
-using Newtonsoft.Json.Linq;
-
 
 namespace WebAPI.Controllers
 {
