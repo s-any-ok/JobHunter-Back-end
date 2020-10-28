@@ -4,138 +4,40 @@ using System.Net.Http;
 using System.Web.Http;
 
 using System.Data;
-using System.Data.SqlClient;
-using System.Configuration;
 using JobUa.Data.Models;
-
+using JobUa.Data.DAO.DataBase;
+using JobUa.Data.DAO;
 
 namespace WebAPI.Controllers
 {
+    [RoutePrefix("api/vacancy")]
     public class VacancyController : ApiController
     {
+        public IVacancy DB = new DBVacancy();
+        
         public HttpResponseMessage Get()
         {
-            DataTable table = new DataTable();
-            string query = @"Select * from dbo.Vacancies";
-
-            using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["JobSearchAppDB"].ConnectionString))
-            using (var cmd = new SqlCommand(query, con))
-            using (var da = new SqlDataAdapter(cmd))
-            {
-                cmd.CommandType = CommandType.Text;
-                da.Fill(table);
-            }
-
+            DataTable table = DB.getAll();
             return Request.CreateResponse(HttpStatusCode.OK, table);
         }
-        public HttpResponseMessage Get(Guid id)
+        [Route("{guid}")]
+        public HttpResponseMessage GetByGuid(Guid guid)
         {
-            DataTable table = new DataTable();
-            string query = @"Select * from dbo.Vacancies where VacancyID = '" + id + @"'";
-
-            using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["JobSearchAppDB"].ConnectionString))
-            using (var cmd = new SqlCommand(query, con))
-            using (var da = new SqlDataAdapter(cmd))
-            {
-                cmd.CommandType = CommandType.Text;
-                da.Fill(table);
-            }
-
+            DataTable table = DB.getVacByGuid(guid);
             return Request.CreateResponse(HttpStatusCode.OK, table);
         }
         public string Post(Vacancy vac)
         {
-            try
-            {
-                DataTable table = new DataTable();
-                string query = @"insert into dbo.Vacancies (CompanyID,
-                                                            Objective,
-                                                            Information,
-                                                            Experience,
-                                                            Employment,
-                                                            Salary,
-                                                            Adress,
-                                                            ContactPhoneNumber,
-                                                            RegistrationData) 
-                                                            Values 
-                                                            ('" + vac.CompanyID + @"',
-                                                             '" + vac.Objective + @"',
-                                                             '" + vac.Information + @"',
-                                                             '" + vac.Experience + @"',
-                                                             '" + vac.Employment + @"',
-                                                             '" + vac.Salary + @"',
-                                                             '" + vac.Adress + @"',
-                                                             '" + vac.ContactPhoneNumber + @"',
-                                                             '" + vac.RegistrationData + @"')";
-
-                using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["JobSearchAppDB"].ConnectionString))
-                using (SqlCommand cmd = new SqlCommand(query, con))
-                using (var da = new SqlDataAdapter(cmd))
-                {
-                    cmd.CommandType = CommandType.Text;
-                    da.Fill(table);
-                }
-                return "Added Vacancy Successfully";
-            }
-            catch (Exception)
-            {
-                return "Failed to add Vacancy";
-            }
-
+            return DB.saveVacancy(vac);
         }
         public string Put(Vacancy vac)
         {
-            try
-            {
-                DataTable table = new DataTable();
-                string query = @"update dbo.Vacancies set  
-                                                            Objective =     '" + vac.Objective + @"',
-                                                            Information =   '" + vac.Information + @"',
-                                                            Experience =    '" + vac.Experience + @"',
-                                                            Employment =    '" + vac.Employment + @"',
-                                                            Salary =        '" + vac.Salary + @"',
-                                                            Adress =        '" + vac.Adress + @"',
-                                                            ContactPhoneNumber =   '" + vac.ContactPhoneNumber + @"'
-                                                            where
-                                                            VacancyID =     '" + vac.VacancyID + @"'";
-
-                using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["JobSearchAppDB"].ConnectionString))
-                using (SqlCommand cmd = new SqlCommand(query, con))
-                using (var da = new SqlDataAdapter(cmd))
-                {
-                    cmd.CommandType = CommandType.Text;
-                    da.Fill(table);
-                }
-                return "Updated Vacancy Successfully";
-            }
-            catch (Exception)
-            {
-                return "Failed to update Vacancy";
-            }
-
+            return DB.updateVacancy(vac);
         }
-        public string Delete(Guid? id)
+        [Route("{guid}")]
+        public string Delete(Guid guid)
         {
-            
-            try
-            {
-                DataTable table = new DataTable();
-                string query = @"delete from dbo.Vacancies where VacancyID = '" + id + @"'";
-
-                using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["JobSearchAppDB"].ConnectionString))
-                using (SqlCommand cmd = new SqlCommand(query, con))
-                using (var da = new SqlDataAdapter(cmd))
-                {
-                    cmd.CommandType = CommandType.Text;
-                    da.Fill(table);
-                }
-                return "Deleted Vacancy Successfully";
-            }
-            catch (Exception)
-            {
-                return "Failed to delete Vacancy";
-            }
-
+            return DB.deleteVacByGuid(guid);
         }
     }
 }

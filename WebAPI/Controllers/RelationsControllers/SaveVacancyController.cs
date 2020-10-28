@@ -7,6 +7,8 @@ using JobUa.Data.Models.Relations;
 using JobUa.Data.DAO.DataBase;
 using JobUa.Data.DAO;
 using System.Data;
+using Newtonsoft.Json.Linq;
+
 
 namespace WebAPI.Controllers
 {
@@ -25,18 +27,18 @@ namespace WebAPI.Controllers
             DataTable table = DB.getByEmpGuid(empId);
             return Request.CreateResponse(HttpStatusCode.OK, table);
         }
-        public string Post(SaveVacancy svac)
-        {
-            string result = DB.saveNewVacancy(svac);
-            return result;
 
+        [HttpPost, MultiPostParameters]
+        public string Post(Guid VacancyID, Guid EmployeeID, DateTime SaveData)
+        {
+            
+            return DB.saveNewVacancy(VacancyID, EmployeeID, SaveData);
         }
         [HttpDelete]
         [Route("api/SaveVacancy/{saveId}")]
         public string Delete(Guid? saveId)
         {
-            string result = DB.deleteSaveVacBySaveGuid(saveId);
-            return result;
+            return DB.deleteSaveVacBySaveGuid(saveId);
         }
     }
 }

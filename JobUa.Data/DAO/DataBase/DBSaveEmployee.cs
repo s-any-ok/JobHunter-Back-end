@@ -38,7 +38,7 @@ namespace JobUa.Data.DAO.DataBase
             return table;
         }
 
-        public string saveNewEmployee(SaveEmployee semp) {
+        public string saveNewEmployee(Guid CompanyID, Guid EmployeeID, DateTime SaveData) {
             try
             {
                 DataTable table = new DataTable();
@@ -48,9 +48,9 @@ namespace JobUa.Data.DAO.DataBase
                                                                 SaveData
                                                                 ) 
                                                                 Values 
-                                                                ('" + semp.Company.CompanyID + @"',
-                                                                 '" + semp.Employee.EmployeeID + @"',
-                                                                 '" + semp.SaveData + @"')";
+                                                                ('" + CompanyID + @"',
+                                                                 '" + EmployeeID + @"',
+                                                                 '" + SaveData + @"')";
 
                 using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["JobSearchAppDB"].ConnectionString))
                 using (SqlCommand cmd = new SqlCommand(query, con))

@@ -1,12 +1,18 @@
 ﻿using System;
-using System.Device.Location;
-
 
 namespace JobUa.Data.Models
 {
     public class Vacancy
     {
-        public Guid VacancyID { get; set; }
+        //static public List<Vacancy> Vacancies = new List<Vacancy>();
+        //private Guid _CompanyID;
+        //public Company Company
+        //{
+        //    get { return Company.Companies.Where(c => c.ChildID == _CompanyID).FirstOrDefault(); }
+        //    set { _CompanyID = value.CompanyID; }
+        //}
+   
+        public Guid VacancyID { get; private set; }
         public Guid CompanyID { get; set; }
         public string Objective { get; set; }
         public string Information { get; set; }

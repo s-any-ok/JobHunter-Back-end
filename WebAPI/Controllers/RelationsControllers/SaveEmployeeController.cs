@@ -25,9 +25,10 @@ namespace WebAPI.Controllers
             DataTable table = DB.getByCmpGuid(cmpId);
             return Request.CreateResponse(HttpStatusCode.OK, table);
         }
-        public string Post(SaveEmployee semp)
+        [HttpPost, MultiPostParameters]
+        public string Post(Guid CompanyID, Guid EmployeeID, DateTime SaveData)
         {
-            string result = DB.saveNewEmployee(semp);
+            string result = DB.saveNewEmployee(CompanyID, EmployeeID, SaveData);
             return result;
 
         }

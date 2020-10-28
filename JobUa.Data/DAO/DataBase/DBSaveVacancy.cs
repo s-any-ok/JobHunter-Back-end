@@ -37,8 +37,8 @@ namespace JobUa.Data.DAO.DataBase
             }
             return table;
         }
-
-        public string saveNewVacancy(SaveVacancy svac) {
+        
+        public string saveNewVacancy(Guid VacancyID, Guid EmployeeID, DateTime SaveData) {
             try
             {
                 DataTable table = new DataTable();
@@ -48,9 +48,9 @@ namespace JobUa.Data.DAO.DataBase
                                                                 SaveData
                                                                 ) 
                                                                 Values 
-                                                                ('" + svac.Vacancy.VacancyID + @"',
-                                                                 '" + svac.Employee.EmployeeID + @"',
-                                                                 '" + svac.SaveData + @"')";
+                                                                ('" + VacancyID + @"',
+                                                                 '" + EmployeeID + @"',
+                                                                 '" + SaveData + @"')";
 
                 using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["JobSearchAppDB"].ConnectionString))
                 using (SqlCommand cmd = new SqlCommand(query, con))

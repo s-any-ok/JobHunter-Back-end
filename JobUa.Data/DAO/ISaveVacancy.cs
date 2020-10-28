@@ -8,7 +8,7 @@ namespace JobUa.Data.DAO
     {
         DataTable getAll();
         DataTable getByEmpGuid(Guid guid);
-        string saveNewVacancy(SaveVacancy svac);
+        string saveNewVacancy(Guid VacancyID, Guid EmployeeID, DateTime SaveData);
         string deleteSaveVacBySaveGuid(Guid? guid);
     }
 }

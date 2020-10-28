@@ -2,132 +2,39 @@
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-
 using System.Data;
-using System.Data.SqlClient;
-using System.Configuration;
 using JobUa.Data.Models;
+using JobUa.Data.DAO.DataBase;
 
 namespace WebAPI.Controllers
 {
+    [RoutePrefix("api/company")]
     public class CompanyController : ApiController
     {
+        ICompany DB = new DBCompany();
         public HttpResponseMessage Get()
         {
-            DataTable table = new DataTable();
-            string query = @"Select * from dbo.Companies";
-
-            using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["JobSearchAppDB"].ConnectionString))
-            using (SqlCommand cmd = new SqlCommand(query, con))
-            using (var da = new SqlDataAdapter(cmd))
-            {
-                cmd.CommandType = CommandType.Text;
-                da.Fill(table);
-            }
-
-                return Request.CreateResponse(HttpStatusCode.OK, table);
+            DataTable table = DB.getAll(); 
+            return Request.CreateResponse(HttpStatusCode.OK, table);
         }
-        public HttpResponseMessage Get(Guid id)
+        [Route("{guid}")]
+        public HttpResponseMessage Get(Guid guid)
         {
-            DataTable table = new DataTable();
-            string query = @"Select * from dbo.Companies where CompanyID = '" + id + @"'";
-
-            using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["JobSearchAppDB"].ConnectionString))
-            using (var cmd = new SqlCommand(query, con))
-            using (var da = new SqlDataAdapter(cmd))
-            {
-                cmd.CommandType = CommandType.Text;
-                da.Fill(table);
-            }
-
+            DataTable table = DB.getCmpByGuid(guid);
             return Request.CreateResponse(HttpStatusCode.OK, table);
         }
         public string Post(Company comp)
         {
-            try
-            {
-                DataTable table = new DataTable();
-                string query = @"insert into dbo.Companies (CompanyID,
-                                                            TIN,
-                                                            CompName,
-                                                            Information,
-                                                            isVip,
-                                                            Link,
-                                                            BusinessType)  
-                                                            Values 
-                                                            ('" + comp.CompanyID + @"',
-                                                             '" + comp.TIN + @"',
-                                                             '" + comp.Name + @"',
-                                                             '" + comp.Information + @"',
-                                                             '" + comp.IsVip + @"',
-                                                             '" + comp.Link + @"',
-                                                             '" + comp.BusinessType + @"')";
-
-                using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["JobSearchAppDB"].ConnectionString))
-                using (SqlCommand cmd = new SqlCommand(query, con))
-                using (var da = new SqlDataAdapter(cmd))
-                {
-                    cmd.CommandType = CommandType.Text;
-                    da.Fill(table);
-                }
-                return "Added Company Successfully";
-            }
-            catch (Exception)
-            {
-                return "Failed to add Company";
-            }
-
+            return DB.saveCompany(comp);
         }
         public string Put(Company comp)
         {
-            try
-            {
-                DataTable table = new DataTable();
-                string query = @"update dbo.Companies set 
-                                                            CompName =      '" + comp.Name + @"',
-                                                            Information =   '" + comp.Information + @"',
-                                                            Link =          '" + comp.Link + @"',
-                                                            BusinessType =  '" + comp.BusinessType + @"',
-                                                            ImageData =     '" + comp.ImageData + @"'
-                                                            where
-                                                            CompanyID =     '" + comp.CompanyID + @"'";
-
-                using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["JobSearchAppDB"].ConnectionString))
-                using (SqlCommand cmd = new SqlCommand(query, con))
-                using (var da = new SqlDataAdapter(cmd))
-                {
-                    cmd.CommandType = CommandType.Text;
-                    da.Fill(table);
-                }
-                return "Updated Company Successfully";
-            }
-            catch (Exception)
-            {
-                return "Failed to update Company";
-            }
-
+            return DB.updateCompany(comp);
         }
-        public string Delete(Guid? id)
+        [Route("{guid}")]
+        public string Delete(Guid guid)
         {
-            try
-            {
-                DataTable table = new DataTable();
-                string query = @"delete from dbo.Companies where CompanyID = '" + id + @"'";
-                                                            
-                using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["JobSearchAppDB"].ConnectionString))
-                using (SqlCommand cmd = new SqlCommand(query, con))
-                using (var da = new SqlDataAdapter(cmd))
-                {
-                    cmd.CommandType = CommandType.Text;
-                    da.Fill(table);
-                }
-                return "Deleted Company Successfully";
-            }
-            catch (Exception)
-            {
-                return "Failed to delete Company";
-            }
-
+            return DB.deleteCmpByGuid(guid);
         }
 
 

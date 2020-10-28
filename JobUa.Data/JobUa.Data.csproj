@@ -43,8 +43,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAO\DataBase\DBEmployee.cs" />
+    <Compile Include="DAO\DataBase\DBSaveEmployee.cs" />
     <Compile Include="DAO\DataBase\DBSaveVacancy.cs" />
+    <Compile Include="DAO\DataBase\DBVacancy.cs" />
+    <Compile Include="DAO\DataBase\DBCompany.cs" />
+    <Compile Include="DAO\ICompany.cs" />
+    <Compile Include="DAO\IEmployee.cs" />
+    <Compile Include="DAO\ISaveEmployee.cs" />
     <Compile Include="DAO\ISaveVacancy.cs" />
+    <Compile Include="DAO\IVacancy.cs" />
     <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\Company.cs" />
     <Compile Include="Models\Employee.cs" />

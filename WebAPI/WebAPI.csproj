@@ -162,9 +162,10 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="MultiPostParametersAttribute.cs" />
+    <Compile Include="MultiPostParameterBinding.cs" />
     <Compile Include="Controllers\CompanyController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
-    <Compile Include="Controllers\CookieController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\RelationsControllers\SaveEmployeeController.cs" />
     <Compile Include="Controllers\RelationsControllers\SaveVacancyController.cs" />

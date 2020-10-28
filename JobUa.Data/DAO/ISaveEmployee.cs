@@ -8,7 +8,7 @@ namespace JobUa.Data.DAO
     {
         DataTable getAll();
         DataTable getByCmpGuid(Guid guid);
-        string saveNewEmployee(SaveEmployee semp);
+        string saveNewEmployee(Guid CompanyID, Guid EmployeeID, DateTime SaveData);
         string deleteSaveEmpBySaveGuid(Guid? guid);
     }
 }
