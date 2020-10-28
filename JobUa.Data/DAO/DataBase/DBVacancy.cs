@@ -6,36 +6,8 @@ using System.Data.SqlClient;
 
 namespace JobUa.Data.DAO.DataBase
 {
-    public class DBVacancy : IVacancy
+    public class DBVacancy : DBBase, IVacancy
     {
-        public DataTable getAll() {
-            DataTable table = new DataTable();
-            string query = @"Select * from dbo.Vacancies";
-
-            using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["JobSearchAppDB"].ConnectionString))
-            using (var cmd = new SqlCommand(query, con))
-            using (var da = new SqlDataAdapter(cmd))
-            {
-                cmd.CommandType = CommandType.Text;
-                da.Fill(table);
-            }
-            return table;
-        }
-
-        public DataTable getVacByGuid(Guid vacId) {
-            DataTable table = new DataTable();
-            string query = @"Select * from dbo.Vacancies where VacancyID = '" + vacId + @"'";
-
-            using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["JobSearchAppDB"].ConnectionString))
-            using (var cmd = new SqlCommand(query, con))
-            using (var da = new SqlDataAdapter(cmd))
-            {
-                cmd.CommandType = CommandType.Text;
-                da.Fill(table);
-            }
-            return table;
-        }
-
         public Vacancy getVacObjByGuid(Guid vacId)
         {
             DataTable table = new DataTable();
@@ -129,28 +101,6 @@ namespace JobUa.Data.DAO.DataBase
             catch (Exception)
             {
                 return "Failed to update Vacancy";
-            }
-        }
-
-        public string deleteVacByGuid(Guid vacId) {
-
-            try
-            {
-                DataTable table = new DataTable();
-                string query = @"delete from dbo.Vacancies where VacancyID = '" + vacId + @"'";
-
-                using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["JobSearchAppDB"].ConnectionString))
-                using (SqlCommand cmd = new SqlCommand(query, con))
-                using (var da = new SqlDataAdapter(cmd))
-                {
-                    cmd.CommandType = CommandType.Text;
-                    da.Fill(table);
-                }
-                return "Deleted Vacancy Successfully";
-            }
-            catch (Exception)
-            {
-                return "Failed to delete Vacancy";
             }
         }
     }

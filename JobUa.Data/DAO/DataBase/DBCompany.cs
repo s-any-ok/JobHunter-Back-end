@@ -6,38 +6,8 @@ using System.Data.SqlClient;
 
 namespace JobUa.Data.DAO.DataBase
 {
-    public class DBCompany : ICompany
+    public class DBCompany : DBBase, ICompany
     {
-        public DataTable getAll()
-        {
-            DataTable table = new DataTable();
-            string query = @"Select * from dbo.Companies";
-
-            using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["JobSearchAppDB"].ConnectionString))
-            using (SqlCommand cmd = new SqlCommand(query, con))
-            using (var da = new SqlDataAdapter(cmd))
-            {
-                cmd.CommandType = CommandType.Text;
-                da.Fill(table);
-            }
-            return table;
-        }
-
-        public DataTable getCmpByGuid(Guid guId)
-        {
-            DataTable table = new DataTable();
-            string query = @"Select * from dbo.Companies where CompanyID = '" + guId + @"'";
-
-            using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["JobSearchAppDB"].ConnectionString))
-            using (var cmd = new SqlCommand(query, con))
-            using (var da = new SqlDataAdapter(cmd))
-            {
-                cmd.CommandType = CommandType.Text;
-                da.Fill(table);
-            }
-            return table;
-        }
-
         public Company getCmpObjByGuid(Guid guId)
         {
             DataTable table = new DataTable();
@@ -148,28 +118,6 @@ namespace JobUa.Data.DAO.DataBase
             catch (Exception)
             {
                 return "Failed to update Company";
-            }
-        }
-
-        public string deleteCmpByGuid(Guid guid)
-        {
-            try
-            {
-                DataTable table = new DataTable();
-                string query = @"delete from dbo.Companies where CompanyID = '" + guid + @"'";
-
-                using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["JobSearchAppDB"].ConnectionString))
-                using (SqlCommand cmd = new SqlCommand(query, con))
-                using (var da = new SqlDataAdapter(cmd))
-                {
-                    cmd.CommandType = CommandType.Text;
-                    da.Fill(table);
-                }
-                return "Deleted Company Successfully";
-            }
-            catch (Exception)
-            {
-                return "Failed to delete Company";
             }
         }
     }

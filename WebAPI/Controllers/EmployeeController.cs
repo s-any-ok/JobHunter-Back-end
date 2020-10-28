@@ -15,14 +15,19 @@ namespace WebAPI.Controllers
         IEmployee DB = new DBEmployee();
         public HttpResponseMessage Get()
         {
-            DataTable table = DB.getAll();
+            DataTable table = DB.getAll("dbo.Employees");
             return Request.CreateResponse(HttpStatusCode.OK, table);
         }
         [Route("{guid}")]
         public HttpResponseMessage Get(Guid guid)
         {
-            DataTable table = DB.getEmpByGuid(guid);
+            DataTable table = DB.getObjByGuid(guid, "EmployeeID", "dbo.Employees");
             return Request.CreateResponse(HttpStatusCode.OK, table);
+        }
+        [Route("{guid}")]
+        public string Delete(Guid guid)
+        {
+            return DB.deleteObjByGuid(guid, "EmployeeID", "dbo.Employees");
         }
         public string Post(Employee emp)
         {
@@ -32,12 +37,5 @@ namespace WebAPI.Controllers
         {
             return DB.updateEmployee(emp);
         }
-        [Route("{guid}")]
-        public string Delete(Guid guid)
-        {
-           return DB.deleteEmpByGuid(guid);
-        }
-
-
     }
 }

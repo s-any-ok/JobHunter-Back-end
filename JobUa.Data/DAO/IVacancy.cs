@@ -1,16 +1,13 @@
-﻿using JobUa.Data.Models;
+﻿using JobUa.Data.DAO.DataBase;
+using JobUa.Data.Models;
 using System;
-using System.Data;
 
 namespace JobUa.Data.DAO
 {
-    public interface IVacancy
+    public interface IVacancy : IBase
     {
-        DataTable getAll();
-        DataTable getVacByGuid(Guid guid);
         Vacancy getVacObjByGuid(Guid guid);
         string saveVacancy(Vacancy vac);
         string updateVacancy(Vacancy vac);
-        string deleteVacByGuid(Guid guid);
     }
 }

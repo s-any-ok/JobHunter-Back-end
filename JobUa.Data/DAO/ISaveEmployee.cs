@@ -1,13 +1,10 @@
-﻿using System;
-using System.Data;
+﻿using JobUa.Data.DAO.DataBase;
+using System;
 
 namespace JobUa.Data.DAO
 {
-    public interface ISaveEmployee
+    public interface ISaveEmployee : IBase
     {
-        DataTable getAll();
-        DataTable getByCmpGuid(Guid guid);
         string saveNewEmployee(Guid CompanyID, Guid EmployeeID, DateTime SaveData);
-        string deleteSaveEmpBySaveGuid(Guid? guid);
     }
 }

@@ -6,36 +6,8 @@ using System.Data.SqlClient;
 
 namespace JobUa.Data.DAO.DataBase
 {
-    public class DBEmployee : IEmployee
+    public class DBEmployee : DBBase, IEmployee
     {
-        public DataTable getAll() {
-            DataTable table = new DataTable();
-            string query = @"Select * from dbo.Employees";
-
-            using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["JobSearchAppDB"].ConnectionString))
-            using (SqlCommand cmd = new SqlCommand(query, con))
-            using (var da = new SqlDataAdapter(cmd))
-            {
-                cmd.CommandType = CommandType.Text;
-                da.Fill(table);
-            }
-            return table;
-        }
-
-        public DataTable getEmpByGuid(Guid guid) {
-            DataTable table = new DataTable();
-            string query = @"Select * from dbo.Employees where EmployeeID = '" + guid + @"'";
-
-            using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["JobSearchAppDB"].ConnectionString))
-            using (var cmd = new SqlCommand(query, con))
-            using (var da = new SqlDataAdapter(cmd))
-            {
-                cmd.CommandType = CommandType.Text;
-                da.Fill(table);
-            }
-            return table;
-        }
-
         public Employee getEmpObjByGuid(Guid guid)
         {
             DataTable table = new DataTable();
@@ -142,26 +114,6 @@ namespace JobUa.Data.DAO.DataBase
             catch (Exception)
             {
                 return "Failed to update Employee";
-            }
-        }
-        public string deleteEmpByGuid(Guid guid) {
-            try
-            {
-                DataTable table = new DataTable();
-                string query = @"delete from dbo.Employees where EmployeeID = '" + guid + @"'";
-
-                using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["JobSearchAppDB"].ConnectionString))
-                using (SqlCommand cmd = new SqlCommand(query, con))
-                using (var da = new SqlDataAdapter(cmd))
-                {
-                    cmd.CommandType = CommandType.Text;
-                    da.Fill(table);
-                }
-                return "Deleted Employee Successfully";
-            }
-            catch (Exception)
-            {
-                return "Failed to delete Employee";
             }
         }
     }

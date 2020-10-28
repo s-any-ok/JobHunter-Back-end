@@ -4,14 +4,11 @@ using System.Data;
 
 namespace JobUa.Data.DAO.DataBase
 {
-    public interface ICompany
+    public interface ICompany : IBase
     {
-        DataTable getAll();
-        DataTable getCmpByGuid(Guid guid);
         Company getCmpObjByGuid(Guid guid);
         Company getCmpObjByVacGuid(Guid guid);
         string saveCompany(Company comp);
         string updateCompany(Company comp);
-        string deleteCmpByGuid(Guid guid);
     }
 }

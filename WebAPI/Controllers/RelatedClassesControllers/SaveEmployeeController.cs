@@ -13,15 +13,22 @@ namespace WebAPI.Controllers
         public ISaveEmployee DB = new DBSaveEmployee();
         public HttpResponseMessage Get()
         {
-            DataTable table = DB.getAll();
+            DataTable table = DB.getAll("dbo.SaveEmployees");
             return Request.CreateResponse(HttpStatusCode.OK, table);
         }
         [HttpGet]
         [Route("api/SaveEmployee/{cmpId}")]
         public HttpResponseMessage Get(Guid cmpId)
         {
-            DataTable table = DB.getByCmpGuid(cmpId);
+            DataTable table = DB.getObjByGuid(cmpId, "CompanyID", "dbo.SaveEmployees");
             return Request.CreateResponse(HttpStatusCode.OK, table);
+        }
+        [HttpDelete]
+        [Route("api/SaveEmployee/{saveId}")]
+        public string Delete(Guid saveId)
+        {
+            string result = DB.deleteObjByGuid(saveId, "SaveID", "dbo.SaveEmployees");
+            return result;
         }
         [HttpPost, MultiPostParameters]
         public string Post(Guid CompanyID, Guid EmployeeID, DateTime SaveData)
@@ -29,13 +36,6 @@ namespace WebAPI.Controllers
             string result = DB.saveNewEmployee(CompanyID, EmployeeID, SaveData);
             return result;
 
-        }
-        [HttpDelete]
-        [Route("api/SaveEmployee/{saveId}")]
-        public string Delete(Guid? saveId)
-        {
-            string result = DB.deleteSaveEmpBySaveGuid(saveId);
-            return result;
         }
     }
 }
