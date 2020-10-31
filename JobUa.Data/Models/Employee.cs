@@ -19,7 +19,7 @@ namespace JobUa.Data.Models
         public byte[] PhotoData { get; set; }
 
 
-        public override string ToString() => LastName + " " + FirstName + " " + MiddleName;
+        public override bool isCorrectUserName(string userName) => Char.IsLower(userName, 0);
         public int Age()
         {
             var today = DateTime.Today;

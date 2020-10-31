@@ -15,9 +15,10 @@ namespace JobUa.Data.Models
         public string SecretWord { get; set; }
         public string Email { get; set; }
         public string ContactPhoneNumber { get; set; }
-        
         public DateTime RegistrationData { get; set; }
 
+        public virtual bool isCorrectUserName(string userName) => Char.IsUpper(userName, 0);
+ 
         public bool IsValPassword(string inputPassword) {
             int minLen = 8;
             int maxLen = 30;
