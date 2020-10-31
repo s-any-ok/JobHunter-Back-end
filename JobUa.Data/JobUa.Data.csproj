@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="DAO\DataBase\DBBase.cs" />
     <Compile Include="DAO\DataBase\DBEmployee.cs" />
+    <Compile Include="DAO\DataBase\DBManager.cs" />
     <Compile Include="DAO\DataBase\DBSaveEmployee.cs" />
     <Compile Include="DAO\DataBase\DBSaveVacancy.cs" />
     <Compile Include="DAO\DataBase\DBVacancy.cs" />

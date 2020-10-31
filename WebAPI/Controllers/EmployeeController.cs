@@ -15,19 +15,19 @@ namespace WebAPI.Controllers
         IEmployee DB = new DBEmployee();
         public HttpResponseMessage Get()
         {
-            DataTable table = DB.getAll("dbo.Employees");
+            DataTable table = DB.GetAll("dbo.Employees");
             return Request.CreateResponse(HttpStatusCode.OK, table);
         }
         [Route("{guid}")]
         public HttpResponseMessage Get(Guid guid)
         {
-            DataTable table = DB.getObjByGuid(guid, "EmployeeID", "dbo.Employees");
+            DataTable table = DB.GetObjByGuid(guid, "EmployeeID", "dbo.Employees");
             return Request.CreateResponse(HttpStatusCode.OK, table);
         }
         [Route("{guid}")]
         public string Delete(Guid guid)
         {
-            return DB.deleteObjByGuid(guid, "EmployeeID", "dbo.Employees");
+            return DB.DeleteObjByGuid(guid, "EmployeeID", "dbo.Employees");
         }
         public string Post(Employee emp)
         {

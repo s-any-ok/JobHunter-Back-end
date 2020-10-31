@@ -1,55 +1,27 @@
 ﻿using System;
-using System.Configuration;
 using System.Data;
-using System.Data.SqlClient;
 
 namespace JobUa.Data.DAO.DataBase
 {
-    public class DBBase: IBase
+    public class DBBase : DBManager, IBase
     {
-        public DataTable getAll(string dbName)
+        public DataTable GetAll(string dbName)
         {
-            DataTable table = new DataTable();
             string query = @"Select * from " + dbName;
-
-            using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["JobSearchAppDB"].ConnectionString))
-            using (SqlCommand cmd = new SqlCommand(query, con))
-            using (var da = new SqlDataAdapter(cmd))
-            {
-                cmd.CommandType = CommandType.Text;
-                da.Fill(table);
-            }
-            return table;
+            return UpdateDBTableDataByQuery(query);
         }
-        public DataTable getObjByGuid(Guid guId, string idField, string dbName)
+        public DataTable GetObjByGuid(Guid guId, string idField, string dbName)
         {
-            DataTable table = new DataTable();
             string query = @"Select * from " + dbName +  " where " +  idField  + " = '" + guId + @"'";
-
-            using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["JobSearchAppDB"].ConnectionString))
-            using (var cmd = new SqlCommand(query, con))
-            using (var da = new SqlDataAdapter(cmd))
-            {
-                cmd.CommandType = CommandType.Text;
-                da.Fill(table);
-            }
-            return table;
+            return UpdateDBTableDataByQuery(query);
         }
 
-        public string deleteObjByGuid(Guid guid, string idField, string dbName)
+        public string DeleteObjByGuid(Guid guid, string idField, string dbName)
         {
             try
             {
-                DataTable table = new DataTable();
                 string query = @"delete from " + dbName + " where " + idField + " = '" + guid + @"'";
-
-                using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["JobSearchAppDB"].ConnectionString))
-                using (SqlCommand cmd = new SqlCommand(query, con))
-                using (var da = new SqlDataAdapter(cmd))
-                {
-                    cmd.CommandType = CommandType.Text;
-                    da.Fill(table);
-                }
+                UpdateDBTableDataByQuery(query);
                 return "Deleted object from " + dbName + " Successfully";
             }
             catch (Exception)

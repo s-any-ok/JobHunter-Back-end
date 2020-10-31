@@ -13,21 +13,21 @@ namespace WebAPI.Controllers
         public ISaveEmployee DB = new DBSaveEmployee();
         public HttpResponseMessage Get()
         {
-            DataTable table = DB.getAll("dbo.SaveEmployees");
+            DataTable table = DB.GetAll("dbo.SaveEmployees");
             return Request.CreateResponse(HttpStatusCode.OK, table);
         }
         [HttpGet]
         [Route("api/SaveEmployee/{cmpId}")]
         public HttpResponseMessage Get(Guid cmpId)
         {
-            DataTable table = DB.getObjByGuid(cmpId, "CompanyID", "dbo.SaveEmployees");
+            DataTable table = DB.GetObjByGuid(cmpId, "CompanyID", "dbo.SaveEmployees");
             return Request.CreateResponse(HttpStatusCode.OK, table);
         }
         [HttpDelete]
         [Route("api/SaveEmployee/{saveId}")]
         public string Delete(Guid saveId)
         {
-            string result = DB.deleteObjByGuid(saveId, "SaveID", "dbo.SaveEmployees");
+            string result = DB.DeleteObjByGuid(saveId, "SaveID", "dbo.SaveEmployees");
             return result;
         }
         [HttpPost, MultiPostParameters]

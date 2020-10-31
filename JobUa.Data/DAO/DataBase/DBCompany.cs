@@ -75,7 +75,9 @@ namespace JobUa.Data.DAO.DataBase
                                                              '" + comp.Information + @"',
                                                              '" + comp.IsVip + @"',
                                                              '" + comp.Link + @"',
-                                                             '" + comp.BusinessType + @"')";
+                                                             '" + comp.BusinessType + @"',
+                                                             '" + comp.Email + @"',
+                                                             '" + comp.ContactPhoneNumber + @"')";
 
                 using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["JobSearchAppDB"].ConnectionString))
                 using (SqlCommand cmd = new SqlCommand(query, con))

@@ -1,8 +1,5 @@
 ﻿using JobUa.Data.Models;
 using System;
-using System.Configuration;
-using System.Data;
-using System.Data.SqlClient;
 
 namespace JobUa.Data.DAO.DataBase
 {
@@ -10,16 +7,9 @@ namespace JobUa.Data.DAO.DataBase
     {
         public Vacancy getVacObjByGuid(Guid vacId)
         {
-            DataTable table = new DataTable();
-            string query = @"Select * from dbo.Vacancies where VacancyID = '" + vacId + @"'";
 
-            using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["JobSearchAppDB"].ConnectionString))
-            using (var cmd = new SqlCommand(query, con))
-            using (var da = new SqlDataAdapter(cmd))
-            {
-                cmd.CommandType = CommandType.Text;
-                da.Fill(table);
-            }
+            string query = @"Select * from dbo.Vacancies where VacancyID = '" + vacId + @"'";
+            var table = UpdateDBTableDataByQuery(query);
             Vacancy vac = new Vacancy();
 
             //vac.VacancyID = (Guid)table.Rows[0]["VacancyID"];
@@ -38,7 +28,6 @@ namespace JobUa.Data.DAO.DataBase
         public string saveVacancy(Vacancy vac) {
             try
             {
-                DataTable table = new DataTable();
                 string query = @"insert into dbo.Vacancies (CompanyID,
                                                             Objective,
                                                             Information,
@@ -59,13 +48,7 @@ namespace JobUa.Data.DAO.DataBase
                                                              '" + vac.ContactPhoneNumber + @"',
                                                              '" + vac.RegistrationData + @"')";
 
-                using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["JobSearchAppDB"].ConnectionString))
-                using (SqlCommand cmd = new SqlCommand(query, con))
-                using (var da = new SqlDataAdapter(cmd))
-                {
-                    cmd.CommandType = CommandType.Text;
-                    da.Fill(table);
-                }
+                UpdateDBTableDataByQuery(query); ;
                 return "Added Vacancy Successfully";
             }
             catch (Exception)
@@ -77,7 +60,6 @@ namespace JobUa.Data.DAO.DataBase
         public string updateVacancy(Vacancy vac) {
             try
             {
-                DataTable table = new DataTable();
                 string query = @"update dbo.Vacancies set  
                                                             Objective =     '" + vac.Objective + @"',
                                                             Information =   '" + vac.Information + @"',
@@ -89,13 +71,7 @@ namespace JobUa.Data.DAO.DataBase
                                                             where
                                                             VacancyID =     '" + vac.VacancyID + @"'";
 
-                using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["JobSearchAppDB"].ConnectionString))
-                using (SqlCommand cmd = new SqlCommand(query, con))
-                using (var da = new SqlDataAdapter(cmd))
-                {
-                    cmd.CommandType = CommandType.Text;
-                    da.Fill(table);
-                }
+                UpdateDBTableDataByQuery(query);
                 return "Updated Vacancy Successfully";
             }
             catch (Exception)

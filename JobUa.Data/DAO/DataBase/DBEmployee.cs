@@ -1,8 +1,5 @@
 ﻿using JobUa.Data.Models;
 using System;
-using System.Configuration;
-using System.Data;
-using System.Data.SqlClient;
 
 namespace JobUa.Data.DAO.DataBase
 {
@@ -10,16 +7,9 @@ namespace JobUa.Data.DAO.DataBase
     {
         public Employee getEmpObjByGuid(Guid guid)
         {
-            DataTable table = new DataTable();
             string query = @"Select * from dbo.Employees where EmployeeID = '" + guid + @"'";
+            var table = UpdateDBTableDataByQuery(query);
 
-            using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["JobSearchAppDB"].ConnectionString))
-            using (var cmd = new SqlCommand(query, con))
-            using (var da = new SqlDataAdapter(cmd))
-            {
-                cmd.CommandType = CommandType.Text;
-                da.Fill(table);
-            }
             Employee emp = new Employee();
             emp.EmployeeID = (Guid)table.Rows[0]["EmployeeID"];
             emp.FirstName = (string)table.Rows[0]["FirstName"];
@@ -40,7 +30,6 @@ namespace JobUa.Data.DAO.DataBase
         public string saveEmployee(Employee emp) {
             try
             {
-                DataTable table = new DataTable();
                 string query = @"insert into  dbo.Employees (EmployeeID,
                                                             FirstName,
                                                             MiddleName,
@@ -52,7 +41,9 @@ namespace JobUa.Data.DAO.DataBase
                                                             Experience,
                                                             Skills,
                                                             Adress,
-                                                            Birthday) 
+                                                            Birthday,
+                                                            Email,
+                                                            ContactPhoneNumber)
                                                             Values 
                                                             ('" + emp.EmployeeID + @"',
                                                              '" + emp.FirstName + @"',
@@ -65,15 +56,11 @@ namespace JobUa.Data.DAO.DataBase
                                                              '" + emp.Experience + @"',
                                                              '" + emp.Skills + @"',
                                                              '" + emp.Adress + @"',
-                                                             '" + emp.Birthday + @"')";
+                                                             '" + emp.Birthday + @"',
+                                                             '" + emp.Email + @"',
+                                                             '" + emp.ContactPhoneNumber + @"')";
 
-                using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["JobSearchAppDB"].ConnectionString))
-                using (SqlCommand cmd = new SqlCommand(query, con))
-                using (var da = new SqlDataAdapter(cmd))
-                {
-                    cmd.CommandType = CommandType.Text;
-                    da.Fill(table);
-                }
+                UpdateDBTableDataByQuery(query);
 
                 return "Added Employee Successfully";
 
@@ -87,7 +74,6 @@ namespace JobUa.Data.DAO.DataBase
         public string updateEmployee(Employee emp) {
             try
             {
-                DataTable table = new DataTable();
                 string query = @"update  dbo.Employees set 
                                                             FirstName =                 '" + emp.FirstName + @"',
                                                             MiddleName =                '" + emp.MiddleName + @"',
@@ -102,13 +88,7 @@ namespace JobUa.Data.DAO.DataBase
                                                             where
                                                             EmployeeID =                '" + emp.EmployeeID + @"'";
 
-                using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["JobSearchAppDB"].ConnectionString))
-                using (SqlCommand cmd = new SqlCommand(query, con))
-                using (var da = new SqlDataAdapter(cmd))
-                {
-                    cmd.CommandType = CommandType.Text;
-                    da.Fill(table);
-                }
+                UpdateDBTableDataByQuery(query);
                 return "Updated Employee Successfully";
             }
             catch (Exception)

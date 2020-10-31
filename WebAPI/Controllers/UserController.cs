@@ -28,8 +28,6 @@ namespace WebAPI.Controllers
                                                             UserLogin,
                                                             UserPassword,
                                                             SecretWord,
-                                                            Email,
-                                                            ContactPhoneNumber,
                                                             RegistrationData) 
                                                             Values 
                                                             ('" + user.ChildID + @"',
@@ -38,8 +36,6 @@ namespace WebAPI.Controllers
                                                              '" + user.Login + @"',
                                                              '" + user.Password + @"',
                                                              '" + user.SecretWord + @"',
-                                                             '" + user.Email + @"',
-                                                             '" + user.ContactPhoneNumber + @"',
                                                              '" + user.RegistrationData + @"')";
 
                 using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["JobSearchAppDB"].ConnectionString))
@@ -58,12 +54,12 @@ namespace WebAPI.Controllers
 
         }
 
-        [HttpPost]
+        [HttpPost, MultiPostParameters]
         [Route("login")]
-        public HttpResponseMessage Login(User user) {
+        public HttpResponseMessage Login(string Login, string Password) {
 
             DataTable table = new DataTable();
-            string query = @"Select UserID, ChildID, IsCompany from dbo.Users where UserLogin = '" + user.Login + @"' and UserPassword = '" + user.Password + @"'";
+            string query = @"Select UserID, ChildID, IsCompany from dbo.Users where UserLogin = '" + Login + @"' and UserPassword = '" + Password + @"'";
 
             using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["JobSearchAppDB"].ConnectionString))
             using (SqlCommand cmd = new SqlCommand(query, con))
@@ -85,8 +81,8 @@ namespace WebAPI.Controllers
                 vals["Id"] = id.ToString();
                 vals["ChildID"] = childId.ToString();
                 vals["IsCompany"] = isCompany.ToString();
-                vals["Login"] = user.Login;
-                vals["Password"] = user.Password;
+                vals["Login"] = Login;
+                vals["Password"] = Password;
                 var cookie = new CookieHeaderValue("user", vals);
 
                 cookie.Expires = DateTimeOffset.Now.AddHours(1);
