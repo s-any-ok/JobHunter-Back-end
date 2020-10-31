@@ -8,18 +8,11 @@ namespace JobUa.Data.DAO.DataBase
 {
     public class DBCompany : DBBase, ICompany
     {
-        public Company getCmpObjByGuid(Guid guId)
+        public Company GetCmpObjByGuid(Guid guId)
         {
-            DataTable table = new DataTable();
             string query = @"Select * from dbo.Companies where CompanyID = '" + guId + @"'";
+            var table = UpdateDBTableDataByQuery(query);
 
-            using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["JobSearchAppDB"].ConnectionString))
-            using (var cmd = new SqlCommand(query, con))
-            using (var da = new SqlDataAdapter(cmd))
-            {
-                cmd.CommandType = CommandType.Text;
-                da.Fill(table);
-            }
             Company comp = new Company();
 
             comp.TIN = (string)table.Rows[0]["TIN"];
@@ -32,18 +25,11 @@ namespace JobUa.Data.DAO.DataBase
             return comp;
         }
 
-        public Company getCmpObjByVacGuid(Guid guId)
+        public Company GetCmpObjByVacGuid(Guid guId)
         {
-            DataTable table = new DataTable();
             string query = @"Select * from dbo.Companies where VacancyID = '" + guId + @"'";
+            var table = UpdateDBTableDataByQuery(query);
 
-            using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["JobSearchAppDB"].ConnectionString))
-            using (var cmd = new SqlCommand(query, con))
-            using (var da = new SqlDataAdapter(cmd))
-            {
-                cmd.CommandType = CommandType.Text;
-                da.Fill(table);
-            }
             Company comp = new Company();
 
             comp.TIN = (string)table.Rows[0]["TIN"];
@@ -56,7 +42,7 @@ namespace JobUa.Data.DAO.DataBase
             return comp;
         }
 
-        public string saveCompany(Company comp)
+        public string SaveCompany(Company comp)
         {
             try
             {
@@ -79,13 +65,7 @@ namespace JobUa.Data.DAO.DataBase
                                                              '" + comp.Email + @"',
                                                              '" + comp.ContactPhoneNumber + @"')";
 
-                using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["JobSearchAppDB"].ConnectionString))
-                using (SqlCommand cmd = new SqlCommand(query, con))
-                using (var da = new SqlDataAdapter(cmd))
-                {
-                    cmd.CommandType = CommandType.Text;
-                    da.Fill(table);
-                }
+                UpdateDBTableDataByQuery(query);
                 return "Added Company Successfully";
             }
             catch (Exception)
@@ -94,7 +74,7 @@ namespace JobUa.Data.DAO.DataBase
             }
         }
 
-        public string updateCompany(Company comp)
+        public string UpdateCompany(Company comp)
         {
             try
             {
@@ -108,13 +88,7 @@ namespace JobUa.Data.DAO.DataBase
                                                             where
                                                             CompanyID =     '" + comp.CompanyID + @"'";
 
-                using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["JobSearchAppDB"].ConnectionString))
-                using (SqlCommand cmd = new SqlCommand(query, con))
-                using (var da = new SqlDataAdapter(cmd))
-                {
-                    cmd.CommandType = CommandType.Text;
-                    da.Fill(table);
-                }
+                UpdateDBTableDataByQuery(query);
                 return "Updated Company Successfully";
             }
             catch (Exception)

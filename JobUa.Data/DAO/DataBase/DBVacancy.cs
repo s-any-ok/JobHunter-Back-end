@@ -5,7 +5,7 @@ namespace JobUa.Data.DAO.DataBase
 {
     public class DBVacancy : DBBase, IVacancy
     {
-        public Vacancy getVacObjByGuid(Guid vacId)
+        public Vacancy GetVacObjByGuid(Guid vacId)
         {
 
             string query = @"Select * from dbo.Vacancies where VacancyID = '" + vacId + @"'";
@@ -25,7 +25,7 @@ namespace JobUa.Data.DAO.DataBase
             return vac;
         }
 
-        public string saveVacancy(Vacancy vac) {
+        public string SaveVacancy(Vacancy vac) {
             try
             {
                 string query = @"insert into dbo.Vacancies (CompanyID,
@@ -57,7 +57,7 @@ namespace JobUa.Data.DAO.DataBase
             }
         }
 
-        public string updateVacancy(Vacancy vac) {
+        public string UpdateVacancy(Vacancy vac) {
             try
             {
                 string query = @"update dbo.Vacancies set  

@@ -5,9 +5,9 @@ namespace JobUa.Data.DAO.DataBase
 {
     public interface ICompany : IBase
     {
-        Company getCmpObjByGuid(Guid guid);
-        Company getCmpObjByVacGuid(Guid guid);
-        string saveCompany(Company comp);
-        string updateCompany(Company comp);
+        Company GetCmpObjByGuid(Guid guid);
+        Company GetCmpObjByVacGuid(Guid guid);
+        string SaveCompany(Company comp);
+        string UpdateCompany(Company comp);
     }
 }

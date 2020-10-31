@@ -5,7 +5,7 @@ namespace JobUa.Data.DAO.DataBase
 {
     public class DBEmployee : DBBase, IEmployee
     {
-        public Employee getEmpObjByGuid(Guid guid)
+        public Employee GetEmpObjByGuid(Guid guid)
         {
             string query = @"Select * from dbo.Employees where EmployeeID = '" + guid + @"'";
             var table = UpdateDBTableDataByQuery(query);
@@ -27,7 +27,7 @@ namespace JobUa.Data.DAO.DataBase
             return emp;
         }
 
-        public string saveEmployee(Employee emp) {
+        public string SaveEmployee(Employee emp) {
             try
             {
                 string query = @"insert into  dbo.Employees (EmployeeID,
@@ -61,7 +61,6 @@ namespace JobUa.Data.DAO.DataBase
                                                              '" + emp.ContactPhoneNumber + @"')";
 
                 UpdateDBTableDataByQuery(query);
-
                 return "Added Employee Successfully";
 
             }
@@ -71,7 +70,7 @@ namespace JobUa.Data.DAO.DataBase
             }
         }
 
-        public string updateEmployee(Employee emp) {
+        public string UpdateEmployee(Employee emp) {
             try
             {
                 string query = @"update  dbo.Employees set 

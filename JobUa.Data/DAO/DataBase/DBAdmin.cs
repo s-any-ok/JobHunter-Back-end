@@ -8,6 +8,6 @@ namespace JobUa.Data.DAO.DataBase
 
             string query = @"Select * from dbo.Admins where AdminLogin = '" + login + @"' and AdminPassword = '" + password + @"'";
             return UpdateDBTableDataByQuery(query);
-        }; 
+        }
     }
 }

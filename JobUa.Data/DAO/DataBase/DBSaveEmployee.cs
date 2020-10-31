@@ -4,7 +4,7 @@ namespace JobUa.Data.DAO.DataBase
 {
     public class DBSaveEmployee : DBBase, ISaveEmployee
     {
-        public string saveNewEmployee(Guid CompanyID, Guid EmployeeID, DateTime SaveData) {
+        public string SaveNewEmployee(Guid CompanyID, Guid EmployeeID, DateTime SaveData) {
             try
             {
                 string query = @"insert into dbo.SaveEmployees (

@@ -33,7 +33,7 @@ namespace WebAPI.Controllers
         [HttpPost, MultiPostParameters]
         public string Post(Guid CompanyID, Guid EmployeeID, DateTime SaveData)
         {
-            string result = DB.saveNewEmployee(CompanyID, EmployeeID, SaveData);
+            string result = DB.SaveNewEmployee(CompanyID, EmployeeID, SaveData);
             return result;
 
         }

@@ -31,11 +31,11 @@ namespace WebAPI.Controllers
         }
         public string Post(Employee emp)
         {
-            return DB.saveEmployee(emp);
+            return DB.SaveEmployee(emp);
         }
         public string Put(Employee emp)
         {
-            return DB.updateEmployee(emp);
+            return DB.UpdateEmployee(emp);
         }
     }
 }

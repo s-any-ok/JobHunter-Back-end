@@ -31,11 +31,11 @@ namespace WebAPI.Controllers
         }
         public string Post(Vacancy vac)
         {
-            return DB.saveVacancy(vac);
+            return DB.SaveVacancy(vac);
         }
         public string Put(Vacancy vac)
         {
-            return DB.updateVacancy(vac);
+            return DB.UpdateVacancy(vac);
         }
     }
 }

@@ -32,7 +32,7 @@ namespace WebAPI.Controllers
         [HttpPost, MultiPostParameters]
         public string Post(Guid VacancyID, Guid EmployeeID, DateTime SaveData)
         { 
-            return DB.saveNewVacancy(VacancyID, EmployeeID, SaveData);
+            return DB.SaveNewVacancy(VacancyID, EmployeeID, SaveData);
         }
         
     }

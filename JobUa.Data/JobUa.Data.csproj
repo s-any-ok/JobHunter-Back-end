@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAO\DataBase\DBAdmin.cs" />
     <Compile Include="DAO\DataBase\DBBase.cs" />
     <Compile Include="DAO\DataBase\DBEmployee.cs" />
     <Compile Include="DAO\DataBase\DBManager.cs" />
@@ -53,6 +54,7 @@
     <Compile Include="DAO\DataBase\DBVacancy.cs" />
     <Compile Include="DAO\DataBase\DBCompany.cs" />
     <Compile Include="DAO\DataBase\IBase.cs" />
+    <Compile Include="DAO\IAdmin.cs" />
     <Compile Include="DAO\ICompany.cs" />
     <Compile Include="DAO\IEmployee.cs" />
     <Compile Include="DAO\ISaveEmployee.cs" />

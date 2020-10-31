@@ -6,8 +6,8 @@ namespace JobUa.Data.DAO
 {
     public interface IEmployee : IBase
     {
-        Employee getEmpObjByGuid(Guid guid);
-        string saveEmployee(Employee emp);
-        string updateEmployee(Employee emp);
+        Employee GetEmpObjByGuid(Guid guid);
+        string SaveEmployee(Employee emp);
+        string UpdateEmployee(Employee emp);
     }
 }

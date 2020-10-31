@@ -6,8 +6,8 @@ namespace JobUa.Data.DAO
 {
     public interface IVacancy : IBase
     {
-        Vacancy getVacObjByGuid(Guid guid);
-        string saveVacancy(Vacancy vac);
-        string updateVacancy(Vacancy vac);
+        Vacancy GetVacObjByGuid(Guid guid);
+        string SaveVacancy(Vacancy vac);
+        string UpdateVacancy(Vacancy vac);
     }
 }

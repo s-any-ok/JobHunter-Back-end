@@ -10,13 +10,13 @@ namespace JobUa.Data.Models.Relations
         private DBEmployee DBEmp;
         public Vacancy Vacancy
         {
-            get { return DBVac.getVacObjByGuid(_VacancyID); }
+            get { return DBVac.GetVacObjByGuid(_VacancyID); }
             set { _VacancyID = value.VacancyID; }
 
         }
         public Employee Employee
         {
-            get { return DBEmp.getEmpObjByGuid(_EmployeeID); }
+            get { return DBEmp.GetEmpObjByGuid(_EmployeeID); }
             set { _EmployeeID = value.EmployeeID; }
 
         }

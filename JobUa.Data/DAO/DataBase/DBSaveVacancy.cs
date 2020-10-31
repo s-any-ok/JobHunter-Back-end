@@ -6,7 +6,7 @@ namespace JobUa.Data.DAO.DataBase
 {
     public class DBSaveVacancy : DBBase, ISaveVacancy
     {   
-        public string saveNewVacancy(Guid VacancyID, Guid EmployeeID, DateTime SaveData) {
+        public string SaveNewVacancy(Guid VacancyID, Guid EmployeeID, DateTime SaveData) {
             try
             {
                 DataTable table = new DataTable();

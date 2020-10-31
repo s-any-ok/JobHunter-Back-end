@@ -30,11 +30,11 @@ namespace WebAPI.Controllers
         }
         public string Post(Company comp)
         {
-            return DB.saveCompany(comp);
+            return DB.SaveCompany(comp);
         }
         public string Put(Company comp)
         {
-            return DB.updateCompany(comp);
+            return DB.UpdateCompany(comp);
         }
     }
 }

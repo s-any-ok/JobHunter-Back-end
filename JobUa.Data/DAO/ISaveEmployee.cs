@@ -5,6 +5,6 @@ namespace JobUa.Data.DAO
 {
     public interface ISaveEmployee : IBase
     {
-        string saveNewEmployee(Guid CompanyID, Guid EmployeeID, DateTime SaveData);
+        string SaveNewEmployee(Guid CompanyID, Guid EmployeeID, DateTime SaveData);
     }
 }
