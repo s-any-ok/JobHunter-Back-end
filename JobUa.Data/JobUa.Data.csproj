@@ -35,6 +35,7 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Device" />
+    <Reference Include="System.Numerics" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -48,6 +49,7 @@
     <Compile Include="DAO\DataBase\DBManager.cs" />
     <Compile Include="DAO\DataBase\DBSaveEmployee.cs" />
     <Compile Include="DAO\DataBase\DBSaveVacancy.cs" />
+    <Compile Include="DAO\DataBase\DBUser.cs" />
     <Compile Include="DAO\DataBase\DBVacancy.cs" />
     <Compile Include="DAO\DataBase\DBCompany.cs" />
     <Compile Include="DAO\DataBase\IBase.cs" />
@@ -55,6 +57,7 @@
     <Compile Include="DAO\IEmployee.cs" />
     <Compile Include="DAO\ISaveEmployee.cs" />
     <Compile Include="DAO\ISaveVacancy.cs" />
+    <Compile Include="DAO\IUser.cs" />
     <Compile Include="DAO\IVacancy.cs" />
     <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\Company.cs" />
@@ -67,6 +70,8 @@
     <Compile Include="Models\Vacancy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

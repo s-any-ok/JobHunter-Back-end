@@ -2,72 +2,31 @@
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using System.Data;
-using System.Data.SqlClient;
-using System.Configuration;
 using JobUa.Data.Models;
 using System.Collections.Specialized;
 using System.Net.Http.Headers;
 using System.Linq;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using JobUa.Data.DAO;
+using JobUa.Data.DAO.DataBase;
 
 namespace WebAPI.Controllers
 {
     [RoutePrefix("api/user")]
     public class UserController : ApiController
     {
+        public IUser DB = new DBUser();
         public string Post(User user)
         {
-            try
-            {
-                DataTable table = new DataTable();
-                string query = @"insert into dbo.Users      (ChildID,
-                                                            isCompany,
-                                                            UserName,
-                                                            UserLogin,
-                                                            UserPassword,
-                                                            SecretWord,
-                                                            RegistrationData) 
-                                                            Values 
-                                                            ('" + user.ChildID + @"',
-                                                             '" + user.isCompany + @"',
-                                                             '" + user.UserName + @"',
-                                                             '" + user.Login + @"',
-                                                             '" + user.Password + @"',
-                                                             '" + user.SecretWord + @"',
-                                                             '" + user.RegistrationData + @"')";
-
-                using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["JobSearchAppDB"].ConnectionString))
-                using (SqlCommand cmd = new SqlCommand(query, con))
-                using (var da = new SqlDataAdapter(cmd))
-                {
-                    cmd.CommandType = CommandType.Text;
-                    da.Fill(table);
-                }
-                return "You registered Successfully";
-            }
-            catch (Exception)
-            {
-                return "Failed to register";
-            }
-
+            return DB.SaveUser(user);
         }
 
         [HttpPost, MultiPostParameters]
         [Route("login")]
-        public HttpResponseMessage Login(string Login, string Password) {
+        public HttpResponseMessage Login(string login, string password) {
 
-            DataTable table = new DataTable();
-            string query = @"Select UserID, ChildID, IsCompany from dbo.Users where UserLogin = '" + Login + @"' and UserPassword = '" + Password + @"'";
-
-            using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["JobSearchAppDB"].ConnectionString))
-            using (SqlCommand cmd = new SqlCommand(query, con))
-            using (var da = new SqlDataAdapter(cmd))
-            {
-                cmd.CommandType = CommandType.Text;
-                da.Fill(table);
-            }
+            var table = DB.LoginUser(login, password);
 
            if (table.Rows.Count != 0)
             {
@@ -81,8 +40,8 @@ namespace WebAPI.Controllers
                 vals["Id"] = id.ToString();
                 vals["ChildID"] = childId.ToString();
                 vals["IsCompany"] = isCompany.ToString();
-                vals["Login"] = Login;
-                vals["Password"] = Password;
+                vals["Login"] = login;
+                vals["Password"] = password;
                 var cookie = new CookieHeaderValue("user", vals);
 
                 cookie.Expires = DateTimeOffset.Now.AddHours(1);

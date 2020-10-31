@@ -1,6 +1,5 @@
 ﻿using JobUa.Data.Models;
 using System;
-using System.Data;
 
 namespace JobUa.Data.DAO.DataBase
 {

@@ -1,34 +1,22 @@
 ﻿using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using System.Data;
-using System.Data.SqlClient;
-using System.Configuration;
-using JobUa.Data.Models;
 using System.Collections.Specialized;
 using Newtonsoft.Json;
+using JobUa.Data.DAO.DataBase;
+using JobUa.Data.DAO;
 
 namespace WebAPI.Controllers
 {
     [RoutePrefix("api/admin")]
     public class AdminController : ApiController
     {
-        
-
-        [HttpPost]
+        IAdmin DB = new DBAdmin();
+        [HttpPost, MultiPostParameters]
         [Route("login")]
-        public HttpResponseMessage Login(Admin admin) {
-
-            DataTable table = new DataTable();
-            string query = @"Select * from dbo.Admins where AdminLogin = '" + admin.Login + @"' and AdminPassword = '" + admin.Password + @"'";
-
-            using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["JobSearchAppDB"].ConnectionString))
-            using (SqlCommand cmd = new SqlCommand(query, con))
-            using (var da = new SqlDataAdapter(cmd))
-            {
-                cmd.CommandType = CommandType.Text;
-                da.Fill(table);
-            }
+        public HttpResponseMessage Login(string login, string password) 
+        {
+            var table = DB.LoginAdmin(login, password);
 
            if (table.Rows.Count != 0)
             {
@@ -42,8 +30,8 @@ namespace WebAPI.Controllers
                 vals["AdminID"] = adminID.ToString();
                 vals["AdminName"] = adminName.ToString();
                 vals["Obligations"] = obligations.ToString();
-                vals["Login"] = admin.Login;
-                vals["Password"] = admin.Password;
+                vals["Login"] = login;
+                vals["Password"] = password;
                 var responseObj = new { 
                     resultCode = 0,
                     AdminID = vals["AdminID"],
