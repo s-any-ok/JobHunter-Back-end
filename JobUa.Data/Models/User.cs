@@ -42,6 +42,14 @@ namespace JobUa.Data.Models
         }
         public bool IsCorrectPassword(string InputPassword) => InputPassword == Password;
         public bool IsCorrectSecretWord(string InputSecretWord) => InputSecretWord == SecretWord;
-       
+
+        public string getRegDateString()
+        {
+            string[] RegDateArr = RegistrationData.ToString().Split(' ')[0].Split('.');
+            (RegDateArr[0], RegDateArr[1]) = (RegDateArr[1], RegDateArr[0]);
+            string strDate = string.Join("-", RegDateArr);
+            return strDate;
+        }
+
     }
 }

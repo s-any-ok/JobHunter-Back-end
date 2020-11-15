@@ -1,18 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace JobUa.Data.Models
 {
     public class Company : User
     {
-        //static public List<Company> Companies = new List<Company>();
-        //public List<Vacancy> Vacancis
-        //{
-        //    get { return Vacancy.Vacancies.Where(v => v.Company == this).ToList(); }
-
-        //}
+        
         public Guid CompanyID { get;  set; }
         public string TIN { get; set; } // ІПН
-        public string Name { get; set; }
+        public string CompName { get; set; }
         public string Information { get; set; }
         public BusinessType BusinessType { get; set; }
         public bool IsVip { get; set; }
@@ -40,3 +37,15 @@ namespace JobUa.Data.Models
         Mining, Utilities, Other  
     }
 }
+
+
+
+
+
+//static public List<Company> Companies = new List<Company>();
+//public List<Vacancy> Vacancis
+//{
+//    get { return Vacancy.Vacancies.Where(v => v.Company == this).ToList(); }
+
+//}
+//public Guid _companyID { get; private set; }

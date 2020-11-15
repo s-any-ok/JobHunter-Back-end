@@ -16,7 +16,7 @@ namespace JobUa.Data.DAO.DataBase
             Company comp = new Company();
 
             comp.TIN = (string)table.Rows[0]["TIN"];
-            comp.Name = (string)table.Rows[0]["Name"];
+            comp.CompName = (string)table.Rows[0]["Name"];
             comp.Information = (string)table.Rows[0]["Information"];
             comp.BusinessType = (BusinessType)Enum.Parse(typeof(Gender), table.Rows[0]["Employment"].ToString());
             comp.IsVip = (bool)table.Rows[0]["IsVip"];
@@ -33,7 +33,7 @@ namespace JobUa.Data.DAO.DataBase
             Company comp = new Company();
 
             comp.TIN = (string)table.Rows[0]["TIN"];
-            comp.Name = (string)table.Rows[0]["Name"];
+            comp.CompName = (string)table.Rows[0]["Name"];
             comp.Information = (string)table.Rows[0]["Information"];
             comp.BusinessType = (BusinessType)Enum.Parse(typeof(Gender), table.Rows[0]["Employment"].ToString());
             comp.IsVip = (bool)table.Rows[0]["IsVip"];
@@ -53,11 +53,13 @@ namespace JobUa.Data.DAO.DataBase
                                                             Information,
                                                             isVip,
                                                             Link,
-                                                            BusinessType)  
+                                                            BusinessType,
+                                                            Email,
+                                                            ContactPhoneNumber)  
                                                             Values 
                                                             ('" + comp.CompanyID + @"',
                                                              '" + comp.TIN + @"',
-                                                             '" + comp.Name + @"',
+                                                             '" + comp.CompName + @"',
                                                              '" + comp.Information + @"',
                                                              '" + comp.IsVip + @"',
                                                              '" + comp.Link + @"',
@@ -80,7 +82,7 @@ namespace JobUa.Data.DAO.DataBase
             {
                 DataTable table = new DataTable();
                 string query = @"update dbo.Companies set 
-                                                            CompName =      '" + comp.Name + @"',
+                                                            CompName =      '" + comp.CompName + @"',
                                                             Information =   '" + comp.Information + @"',
                                                             Link =          '" + comp.Link + @"',
                                                             BusinessType =  '" + comp.BusinessType + @"',

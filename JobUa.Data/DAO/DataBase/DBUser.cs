@@ -7,6 +7,7 @@ namespace JobUa.Data.DAO.DataBase
     public class DBUser : DBBase, IUser
     {
         public string SaveUser(User user) {
+            var RegistrationData = user.getRegDateString();
             try
             {
                 string query = @"insert into dbo.Users      (ChildID,
@@ -23,7 +24,7 @@ namespace JobUa.Data.DAO.DataBase
                                                              '" + user.Login + @"',
                                                              '" + user.Password + @"',
                                                              '" + user.SecretWord + @"',
-                                                             '" + user.RegistrationData + @"')";
+                                                             '" + RegistrationData + @"')";
 
                 UpdateDBTableDataByQuery(query);
                 return "You registered Successfully";

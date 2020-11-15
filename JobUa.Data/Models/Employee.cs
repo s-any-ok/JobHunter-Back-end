@@ -1,9 +1,13 @@
-﻿using System;
+﻿using JobUa.Data.Models.Relations;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace JobUa.Data.Models
 {
     public class Employee : User
     {
+        
         public Guid EmployeeID { get; set; }
         public string FirstName { get; set; }
         public string MiddleName { get; set; }
@@ -30,3 +34,17 @@ namespace JobUa.Data.Models
     }
     public enum Gender {Male, Female, Custom }
 }
+
+
+
+
+//static public List<Employee> Employees = new List<Employee>();
+//public List<SaveVacancy> SaveVacancies
+//{
+//    get { return SaveVacancy.SaveVacancies.Where(sv => sv.Employee == this).ToList(); }
+//}
+//public List<Vacancy> Vacancies
+//{
+//    get { return SaveVacancy.SaveVacancies.Where(sv => sv.Employee == this).Select(sv => sv.Vacancy).ToList(); }
+//}
+//public Guid _employeeID { get; private set; }

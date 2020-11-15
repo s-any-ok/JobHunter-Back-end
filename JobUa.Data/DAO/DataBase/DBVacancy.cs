@@ -26,6 +26,7 @@ namespace JobUa.Data.DAO.DataBase
         }
 
         public string SaveVacancy(Vacancy vac) {
+            var RegistrationData = vac.getRegDateString();
             try
             {
                 string query = @"insert into dbo.Vacancies (CompanyID,
@@ -46,7 +47,7 @@ namespace JobUa.Data.DAO.DataBase
                                                              '" + vac.Salary + @"',
                                                              '" + vac.Adress + @"',
                                                              '" + vac.ContactPhoneNumber + @"',
-                                                             '" + vac.RegistrationData + @"')";
+                                                             '" + RegistrationData + @"')";
 
                 UpdateDBTableDataByQuery(query); ;
                 return "Added Vacancy Successfully";

@@ -1,26 +1,33 @@
-﻿using System;
+﻿using JobUa.Data.Models.Relations;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.Serialization;
 
 namespace JobUa.Data.Models
 {
+    [DataContract]
     public class Vacancy
     {
-        //static public List<Vacancy> Vacancies = new List<Vacancy>();
-        //private Guid _CompanyID;
-        //public Company Company
-        //{
-        //    get { return Company.Companies.Where(c => c.ChildID == _CompanyID).FirstOrDefault(); }
-        //    set { _CompanyID = value.CompanyID; }
-        //}
-   
+        [DataMember]
         public Guid VacancyID { get; private set; }
-        public Guid CompanyID { get; private set; }
+        [DataMember]
+        public Guid CompanyID { get; set; }
+        [DataMember]
         public string Objective { get; set; }
+        [DataMember]
         public string Information { get; set; }
+        [DataMember]
         public string Experience { get; set; }
+        [DataMember]
         public string Employment { get; set; }
+        [DataMember]
         public decimal Salary { get; set; }
+        [DataMember]
         public string Adress { get; set; }
+        [DataMember]
         public string ContactPhoneNumber { get; set; }
+        [DataMember]
         public DateTime RegistrationData { get; set; }
         public int TimeAfterRegistration()
         {
@@ -55,8 +62,30 @@ namespace JobUa.Data.Models
             const decimal conversionRate = 28.3m;
             return Salary * conversionRate;
         }
+        public string getRegDateString() {
+            string[] RegDateArr = RegistrationData.ToString().Split(' ')[0].Split('.');
+            (RegDateArr[0], RegDateArr[1]) = (RegDateArr[1], RegDateArr[0]);
+            string strDate = string.Join("-", RegDateArr);
+            return strDate;
+        }
 
-        public Guid getId() => VacancyID;
-        
     }
 }
+
+
+//static public List<Vacancy> Vacancies = new List<Vacancy>();
+//private Guid _companyID;
+//public Company Company
+//{
+//    get { return Company.Companies.Where(c => c._companyID == _companyID).FirstOrDefault(); }
+//    set { _companyID = value._companyID; }
+//}
+//public List<SaveVacancy> SaveVacancies
+//{
+//    get { return SaveVacancy.SaveVacancies.Where(sv => sv.Vacancy == this).ToList(); }
+//}
+//public List<Employee> Employees
+//{
+//    get { return SaveVacancy.SaveVacancies.Where(sv => sv.Vacancy == this).Select(sv => sv.Employee).ToList(); }
+//}
+//public Guid _vacancyID { get; private set; }

@@ -13,7 +13,7 @@ namespace JobUa.Data.DAO.DataBase
     {
         private string connString = "JobSearchAppDB";
         public DataTable UpdateDBTableDataByQuery(string query) {
-            DataTable table = new DataTable();
+            DataTable table = new DataTable() { TableName = "MyTable" };
 
             using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings[connString].ConnectionString))
             using (SqlCommand cmd = new SqlCommand(query, con))
@@ -21,6 +21,13 @@ namespace JobUa.Data.DAO.DataBase
             {
                 cmd.CommandType = CommandType.Text;
                 da.Fill(table);
+                DataSet dataSet = new DataSet();
+
+                dataSet.Tables.Add(table);
+                // Save to disk
+                dataSet.WriteXml(@"E:\MyDataset.xml");
+                // Read from disk
+                //dataSet.ReadXml(@"E:\MyDataset.xml");
             }
             return table;
         }
