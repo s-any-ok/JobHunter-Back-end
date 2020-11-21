@@ -1,11 +1,15 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
+using System.Xml.Serialization;
 
 namespace JobUa.Data.DAO.DataBase
 {
@@ -21,13 +25,16 @@ namespace JobUa.Data.DAO.DataBase
             {
                 cmd.CommandType = CommandType.Text;
                 da.Fill(table);
-                DataSet dataSet = new DataSet();
 
-                dataSet.Tables.Add(table);
-                // Save to disk
-                dataSet.WriteXml(@"E:\MyDataset.xml");
-                // Read from disk
-                //dataSet.ReadXml(@"E:\MyDataset.xml");
+                //XML
+                XmlSerializer serializer = new XmlSerializer(typeof(DataTable));
+                using (FileStream fs = new FileStream(@"E:\data.xml", FileMode.OpenOrCreate))
+                {
+                    serializer.Serialize(fs, table);
+                }
+
+                //JSON
+                File.WriteAllText(@"E:\data.json", JsonConvert.SerializeObject(table));
             }
             return table;
         }

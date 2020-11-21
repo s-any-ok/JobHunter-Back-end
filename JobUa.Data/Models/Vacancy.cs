@@ -1,33 +1,18 @@
-﻿using JobUa.Data.Models.Relations;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
+﻿using System;
 
 namespace JobUa.Data.Models
 {
-    [DataContract]
     public class Vacancy
     {
-        [DataMember]
         public Guid VacancyID { get; private set; }
-        [DataMember]
         public Guid CompanyID { get; set; }
-        [DataMember]
         public string Objective { get; set; }
-        [DataMember]
         public string Information { get; set; }
-        [DataMember]
         public string Experience { get; set; }
-        [DataMember]
         public string Employment { get; set; }
-        [DataMember]
         public decimal Salary { get; set; }
-        [DataMember]
         public string Adress { get; set; }
-        [DataMember]
         public string ContactPhoneNumber { get; set; }
-        [DataMember]
         public DateTime RegistrationData { get; set; }
         public int TimeAfterRegistration()
         {
