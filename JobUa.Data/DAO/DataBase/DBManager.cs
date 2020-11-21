@@ -16,6 +16,7 @@ namespace JobUa.Data.DAO.DataBase
     public abstract class DBManager
     {
         private string connString = "JobSearchAppDB";
+        private string path = @"E:\";
         public DataTable UpdateDBTableDataByQuery(string query) {
             DataTable table = new DataTable() { TableName = "MyTable" };
 
@@ -28,13 +29,13 @@ namespace JobUa.Data.DAO.DataBase
 
                 //XML
                 XmlSerializer serializer = new XmlSerializer(typeof(DataTable));
-                using (FileStream fs = new FileStream(@"E:\data.xml", FileMode.OpenOrCreate))
+                using (FileStream fs = new FileStream(path + "data.xml", FileMode.OpenOrCreate))
                 {
                     serializer.Serialize(fs, table);
                 }
 
                 //JSON
-                File.WriteAllText(@"E:\data.json", JsonConvert.SerializeObject(table));
+                File.WriteAllText(path + "data.json", JsonConvert.SerializeObject(table));
             }
             return table;
         }
